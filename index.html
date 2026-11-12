@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="hu" data-skin="gepkonyv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Tomasz Gépi Földmunka – bemutató</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Két skin. Gépkönyv: éjjeli műszaki rajz, kotrósárga. Retró: 70-es évekbeli gépes plakát, papír, napkorong. */
+  --bg:#14171a; --panel:#1d2124; --text:#e9e4d4; --muted:#9ea3a0; --accent:#f2c230; --on-accent:#14171a; --rule:#33373b;
+  --stroke:#e9e4d4; --sky1:#14171a; --sky2:#22282a; --grid:.05; --hill1:#2a3230; --hill2:#232b28; --river:#2c3d44; --road:#1a1d1f; --roadline:#e9e4d4;
+  --m-olive:#5f6b3c; --m-olive2:#47512c; --m-dark:#2a2e27; --m-glass:#2c3d44; --m-sand:#d7b779; --m-yel:#f2c230; --m-white:#e4e2da; --m-tire:#1f2220; --m-steel:#9aa0a0; --m-soil:#6b5235; --m-orange:#e2632a; --m-rr:#5f6468; --m-skin:#e8b893; --m-hair:#a9824f; --m-shirt:#22324a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --dispw:800; --body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  --grain:0; --retro:0; --upper:uppercase;
+  color-scheme:dark;
+}
+[data-skin="retro"]{
+  --bg:#ece0c4; --panel:#e3d3b0; --text:#2a2722; --muted:#6c6455; --accent:#d0522a; --on-accent:#f6efdf; --rule:#cdbb92;
+  --stroke:#2a2722; --sky1:#f0d9a6; --sky2:#ece0c4; --grid:0; --hill1:#cbb88a; --hill2:#b7a26f; --river:#7fa3a3; --road:#9b8c72; --roadline:#ece0c4;
+  --m-olive:#6f7a3e; --m-olive2:#566031; --m-dark:#3a372f; --m-glass:#7fa3a3; --m-sand:#e3b860; --m-yel:#e8a923; --m-white:#f4efe2; --m-tire:#2f2c27; --m-steel:#8c8a83; --m-soil:#8a6539; --m-orange:#d65a28; --m-rr:#6d6a62;
+  --display:"Alfa Slab One",Georgia,serif; --dispw:400;
+  --grain:.22; --retro:1; --upper:none;
+  color-scheme:light;
+}
+
+[data-skin="nappal"]{
+  --bg:#f4f1e8; --panel:#e8e3d4; --text:#1f2a24; --muted:#56615a; --accent:#f2b705; --on-accent:#1f2a24; --rule:#d6cfbb;
+  --stroke:#1f2a24; --sky1:#8fc8e8; --sky2:#e3f2f8; --grid:0; --hill1:#93b47c; --hill2:#6f9a5e; --river:#4f8fb8; --road:#8d8578; --roadline:#f4f1e8;
+  --m-olive:#5f6b3c; --m-olive2:#4a542e; --m-dark:#2a2e27; --m-glass:#9fd0ea; --m-sand:#e2c07e; --m-yel:#f2b705; --m-white:#f6f5ef; --m-tire:#2b2d2a; --m-steel:#9aa0a0; --m-soil:#7a5a38; --m-orange:#e8622a; --m-rr:#62676b;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --dispw:800; --grain:0; --retro:0; --upper:uppercase;
+  color-scheme:light;
+}
+[data-skin="tervrajz"]{
+  --bg:#12355c; --panel:#174270; --text:#eaf2fb; --muted:#a8c2de; --accent:#ffffff; --on-accent:#12355c; --rule:#2e5b88;
+  --stroke:#eaf2fb; --sky1:#12355c; --sky2:#174270; --grid:.16; --hill1:#174270; --hill2:#1b4b7e; --river:#1f5a95; --road:#12355c; --roadline:#eaf2fb;
+  --m-olive:#1f5288; --m-olive2:#1a4878; --m-dark:#0f2d4e; --m-glass:#2c6aa6; --m-sand:#9fc4ea; --m-yel:#3477b8; --m-white:#dce8f5; --m-tire:#0f2d4e; --m-steel:#7ba2cb; --m-soil:#5d87b6; --m-orange:#2b67a6; --m-rr:#2a5d94;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --dispw:700; --grain:0; --retro:0; --upper:uppercase;
+  color-scheme:dark;
+}
+
+:root{--s-tint:#ffffff;--s-mix:0%;--s-tree:#ffffff;--s-treemix:0%}
+[data-season="tavasz"]{--s-tint:#9fd46a;--s-mix:18%;--s-tree:#f3b3c6;--s-treemix:45%}
+[data-season="nyar"]{--s-tint:#7cbf45;--s-mix:12%;--s-tree:#5f9a3a;--s-treemix:25%}
+[data-season="osz"]{--s-tint:#c9792c;--s-mix:26%;--s-tree:#d9742a;--s-treemix:62%}
+[data-season="tel"]{--s-tint:#f4f6f8;--s-mix:58%;--s-tree:#f4f6f8;--s-treemix:72%}
+#seasonfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15}
+.ctrls{display:flex;gap:8px;position:relative}
+.cbtn{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--rule);background:var(--panel);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;color:var(--text)}
+.cbtn svg{width:24px;height:24px}
+.cbtn .sw{width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--accent) 0 25%,var(--m-olive) 0 50%,var(--m-orange) 0 75%,var(--bg) 0);border:1.5px solid var(--rule)}
+.poke{position:absolute;right:6px;top:34px;width:34px;height:40px;pointer-events:none;animation:poke 2.4s ease-in-out infinite;transform-origin:50% 0}
+.poke.gone{display:none}
+@keyframes poke{0%,100%{transform:translate(0,6px)}12%{transform:translate(-108px,-4px)}18%{transform:translate(-108px,-10px) scale(.9)}24%{transform:translate(-108px,-4px)}42%{transform:translate(-54px,-4px)}48%{transform:translate(-54px,-10px) scale(.9)}54%{transform:translate(-54px,-4px)}72%{transform:translate(-2px,-4px)}78%{transform:translate(-2px,-10px) scale(.9)}84%{transform:translate(-2px,-4px)}}
+#musicbtn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+#musicbtn[aria-pressed="true"] .eq rect{animation:eq .5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}
+#musicbtn .eq rect:nth-child(2){animation-delay:.15s}#musicbtn .eq rect:nth-child(3){animation-delay:.3s}#musicbtn .eq rect:nth-child(4){animation-delay:.08s}
+@keyframes eq{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.toast{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.9);font-family:var(--display);font-weight:var(--dispw);font-size:clamp(56px,16vw,120px);text-transform:var(--upper);color:var(--accent);text-shadow:0 3px 0 var(--bg);opacity:0;pointer-events:none;z-index:40;transition:opacity .35s,transform .35s}
+.toast.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media(prefers-reduced-motion:reduce){.poke{animation:none}}
+
+:root{--beat:0}
+.dj{position:fixed;left:8px;right:8px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:35;max-width:520px;margin:0 auto;background:linear-gradient(#26292d,#1a1c1f);color:#eceae4;border:1.5px solid #3a3e44;border-radius:14px;padding:12px 14px 14px;box-shadow:0 12px 30px rgba(0,0,0,.45);display:grid;gap:12px;font-family:var(--body)}
+.dj[hidden]{display:none}
+.dj-top{display:flex;gap:8px;align-items:center}.dj-top strong{flex:none}.now{flex:1;min-width:0;font:600 12px var(--body);color:#9ea3a0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dj{background:rgba(26,28,31,.82)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.dj.mini .decks,.dj.mini .knobs,.dj.mini .pads{display:none}
+.dj.mini{gap:8px;padding:8px 12px 10px}
+.dj.mini #djmin{transform:rotate(180deg)}
+.dj-top strong{font-family:"Barlow Condensed",Arial Narrow,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:16px;color:#f2c230}
+.dj-x{width:40px;height:40px;border-radius:50%;border:1.5px solid #3a3e44;background:#1a1c1f;color:#eceae4;font-size:24px;line-height:1;cursor:pointer}
+.decks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:center}
+.tempo{display:grid;grid-template-columns:auto auto 1fr auto;gap:10px;align-items:center}
+.tl{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;color:#9ea3a0}
+#tempo{width:100%;accent-color:#f2c230;height:32px}
+.deck{background:#202327;border:1.5px solid #3a3e44;border-radius:12px;padding:8px 4px 6px;white-space:nowrap;color:#cfd2d6;cursor:pointer;display:grid;justify-items:center;gap:4px;font:600 12px var(--body)}
+.deck svg{width:100%;max-width:120px}
+.deck .plat{transform-origin:60px 60px;transform-box:view-box}
+.deck.on{border-color:#f2c230;box-shadow:0 0 0 2px rgba(242,194,48,.25) inset}
+.deck.on .plat{animation:spin 1.8s linear infinite}
+.deck .arm{transition:transform .4s;transform-origin:108px 10px;transform-box:view-box;transform:rotate(-14deg)}
+.deck.on .arm{transform:rotate(0)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mid{display:grid;gap:8px;justify-items:center}
+.bpm{font:700 14px "Barlow Condensed",Arial Narrow,sans-serif;letter-spacing:.08em;color:#9ea3a0;font-variant-numeric:tabular-nums;background:#0f1012;border-radius:6px;padding:4px 8px;border:1px solid #33373b}
+.stop{min-width:64px;min-height:44px;border-radius:8px;border:1.5px solid #3a3e44;background:#2a2d31;color:#eceae4;font:800 14px "Barlow Condensed",Arial Narrow,sans-serif;text-transform:uppercase;letter-spacing:.1em;cursor:pointer}
+.knobs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.knob{display:flex;align-items:center;gap:10px;background:#202327;border:1.5px solid #3a3e44;border-radius:12px;padding:8px 10px;color:#eceae4;cursor:pointer;min-height:56px;text-align:left}
+.kn{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#4a4e54,#1d1f22);border:1.5px solid #555a60;position:relative;flex:none}
+.kn i{position:absolute;left:50%;top:4px;width:3px;height:12px;margin-left:-1.5px;background:#f2c230;border-radius:2px;transform-origin:50% 16px;transform:rotate(var(--k,0deg));transition:transform .3s}
+.kl{display:grid;font:600 11px var(--body);color:#9ea3a0;text-transform:uppercase;letter-spacing:.08em}
+.kl b{font:700 15px var(--body);text-transform:none;letter-spacing:0;color:#eceae4}
+.pads{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pad{min-height:52px;border-radius:10px;border:1.5px solid #3a3e44;background:#2a2d31;color:#eceae4;font:800 16px "Barlow Condensed",Arial Narrow,sans-serif;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35),0 0 calc(var(--beat)*16px) rgba(242,194,48,calc(var(--beat)*.8));border-color:rgba(242,194,48,calc(.25 + var(--beat)*.75))}
+.pad:active{transform:translateY(2px)}
+#musicbtn[aria-pressed="true"],#musicbtn.playing{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+#musicbtn.playing .tt{animation:spin 1.8s linear infinite;transform-origin:11px 13px;transform-box:view-box}
+.crew .mini{translate:0 calc(var(--beat)*-9px)}
+.tamas{translate:0 calc(var(--beat)*-3px)}
+@media(prefers-reduced-motion:reduce){.deck.on .plat,#musicbtn.playing .tt{animation:none}.crew .mini,.tamas{translate:none}}
+
+.disco{position:fixed;left:78%;top:0;z-index:16;pointer-events:none;transform:translate(-50%,-140%);transition:transform 1.2s cubic-bezier(.3,1.4,.5,1);display:grid;justify-items:center}
+.party .disco{transform:translate(-50%,0)}
+.disco .cord{width:2px;height:calc(70px + env(safe-area-inset-top));background:#8a9097}
+.disco .ball{width:64px;height:64px;filter:drop-shadow(0 0 calc(6px + var(--beat)*14px) rgba(255,255,255,.7))}
+.disco .tl{animation:tiles 2.4s linear infinite}
+@keyframes tiles{to{transform:translateX(20px)}}
+.spots{position:fixed;inset:0;z-index:14;pointer-events:none;opacity:0;transition:opacity .8s;mix-blend-mode:screen;background:
+radial-gradient(circle at 20% 30%,rgba(255,80,160,.35) 0 40px,transparent 70px),radial-gradient(circle at 75% 45%,rgba(80,200,255,.35) 0 36px,transparent 64px),radial-gradient(circle at 45% 70%,rgba(255,220,80,.35) 0 44px,transparent 74px),radial-gradient(circle at 85% 80%,rgba(140,255,120,.3) 0 30px,transparent 56px),radial-gradient(circle at 10% 75%,rgba(190,120,255,.3) 0 34px,transparent 60px);
+background-size:100% 100%;animation:spots 6s linear infinite}
+.party .spots{opacity:calc(.55 + var(--beat)*.45)}
+@keyframes spots{0%{background-position:0 0,0 0,0 0,0 0,0 0}25%{background-position:40px 30px,-30px 20px,20px -40px,-20px -20px,30px 10px}50%{background-position:80px 0,-60px 40px,0 -80px,-40px 0,60px -20px}75%{background-position:40px -30px,-30px 20px,-20px -40px,-20px 20px,30px 10px}100%{background-position:0 0,0 0,0 0,0 0,0 0}}
+@media(prefers-reduced-motion:reduce){.disco .tl,.spots{animation:none}}
+
+.rail{position:fixed;right:3px;top:calc(84px + env(safe-area-inset-top));bottom:calc(100px + env(safe-area-inset-bottom));width:26px;z-index:18;pointer-events:none}
+.rtrack{position:absolute;left:11px;top:0;bottom:0;width:4px;border-radius:2px;background:color-mix(in srgb,var(--text) 18%,transparent)}
+.rfill{position:absolute;left:0;top:0;width:100%;height:0;border-radius:2px;background:var(--accent)}
+.rdots button{position:absolute;left:1px;width:24px;height:24px;margin-top:-12px;border:0;background:none;padding:0;cursor:pointer;pointer-events:auto}
+.rdots button::before{content:"";position:absolute;left:7px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid color-mix(in srgb,var(--text) 45%,transparent);box-sizing:border-box;transition:background .2s,border-color .2s,transform .2s}
+.rdots button.on::before{background:var(--accent);border-color:var(--accent);transform:scale(1.25)}
+.rgaz{position:absolute;left:-1px;width:28px;height:20px;margin-top:-10px;transform:rotate(90deg);filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.rlabel{position:absolute;right:30px;margin-top:-14px;white-space:nowrap;font:700 13px var(--body);letter-spacing:.04em;background:var(--accent);color:var(--on-accent);padding:5px 10px;border-radius:999px;opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.rlabel.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rlabel{transition:none}}
+.reelbox{margin-top:24px;display:grid;justify-items:center}
+.reelbox video{width:min(360px,100%);height:auto;aspect-ratio:9/16;border-radius:14px;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:18px;line-height:1.5;transition:background .4s,color .4s}
+body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:var(--display);font-weight:var(--dispw);text-transform:var(--upper);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:var(--grain);mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .17  0 0 0 0 .12  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* fejléc */
+.top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.logo{font-family:var(--display);font-weight:var(--dispw);font-size:22px;letter-spacing:.04em;line-height:1;text-transform:uppercase}
+.logo small{display:block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--muted);margin-top:3px;text-transform:uppercase}
+.skinbtn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--body);color:var(--text);background:var(--panel);border:1.5px solid var(--rule);border-radius:999px;padding:0 14px 0 8px;min-height:44px;cursor:pointer}
+.logo small{white-space:nowrap}
+@media(max-width:380px){.logo{font-size:19px}.logo small{font-size:10px;letter-spacing:.08em}.skinbtn{padding:0 10px 0 6px;gap:6px}.skinbtn small{font-size:9px}.skinbtn .sw{width:20px;height:20px}}
+.skinbtn .sk-t{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1;text-align:left}
+.skinbtn small{font-size:10.5px;font-weight:600;color:var(--muted);letter-spacing:.02em;white-space:nowrap}
+.skinbtn .sw{width:24px;height:24px;border-radius:50%;background:conic-gradient(var(--accent) 0 25%,var(--m-olive) 0 50%,var(--m-orange) 0 75%,var(--bg) 0);border:1.5px solid var(--rule)}
+
+/* jelenetek */
+.track{position:relative}
+.track.gaz{height:440vh}
+.track.kotro{height:420vh}
+.track.darcalo{height:400vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cap{position:absolute;left:18px;right:18px;top:calc(76px + env(safe-area-inset-top));max-width:560px;transition:opacity .35s,transform .35s}
+.cap.off{opacity:0;transform:translateY(-10px);pointer-events:none}
+.tag{display:inline-block;font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:4px 9px;border-radius:3px}
+.cap h1{font-size:clamp(48px,12vw,92px);margin-top:12px}
+.cap h2{font-size:clamp(36px,8.6vw,64px);margin-top:12px}
+.cap p{color:var(--muted);margin-top:10px;font-size:19px;max-width:34ch}
+.cap .btn{margin-top:18px}
+.hint{position:absolute;left:0;right:0;bottom:calc(96px + env(safe-area-inset-bottom));text-align:center;font:600 14px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:opacity .3s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:6px;background:var(--accent);color:var(--on-accent);font-family:var(--display);font-weight:var(--dispw);font-size:21px;text-transform:var(--upper);letter-spacing:.03em;text-decoration:none;border:0}
+.machine{cursor:pointer}
+
+/* tartalom */
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+section.block{padding:64px 0;border-top:1.5px solid var(--rule)}
+.k{font-family:var(--body);font-weight:700;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:14px;margin-bottom:10px}
+.block h2{font-size:clamp(36px,8vw,56px)}
+.svcs{display:grid;gap:14px;margin-top:26px}
+.svc{background:var(--panel);border-radius:8px;padding:20px 20px 22px;display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start}
+.svc svg{width:64px;height:64px}
+.svc h3{font-size:26px;margin-bottom:8px}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;color:var(--text)}
+.svc li{padding-left:18px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;background:var(--accent);border-radius:1px}
+@media(min-width:860px){.svcs{grid-template-columns:repeat(3,1fr)}.svc{grid-template-columns:1fr}}
+.steps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;background:var(--panel);border-radius:8px;padding:16px}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:var(--dispw);font-size:30px;color:var(--on-accent);background:var(--accent);border-radius:6px;height:52px;display:flex;align-items:center;justify-content:center}
+.steps strong{display:block;font-family:var(--display);font-weight:var(--dispw);font-size:22px;text-transform:var(--upper)}
+.steps span{color:var(--muted)}
+@media(min-width:860px){.steps{grid-template-columns:repeat(4,1fr)}}
+
+.contact{position:relative;background:var(--accent);color:var(--on-accent);border-radius:10px;padding:30px 22px 0;overflow:hidden;display:grid;gap:12px}
+.contact h2{color:var(--on-accent)}
+.contact .num{white-space:nowrap;font-family:var(--display);font-weight:var(--dispw);font-size:clamp(32px,9.4vw,68px);line-height:1;color:var(--on-accent);text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.contact p{max-width:30ch}
+.contact .fb{color:var(--on-accent);font-weight:600}
+.duo{position:relative;justify-self:end;align-self:end;width:min(420px,100%);margin-top:6px}
+.tamas{position:relative;width:88%;margin-left:auto;aspect-ratio:656/600;transform:translateX(25%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.tamas.in{transform:translateX(0)}
+.tamas img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tamas .kar{transform-origin:15.2% 95.9%;animation:kar 3.2s ease-in-out infinite}
+@keyframes kar{0%,62%,100%{transform:rotate(0)}70%{transform:rotate(-2.5deg)}76%{transform:rotate(-.5deg)}82%{transform:rotate(-2deg)}90%{transform:rotate(0)}}
+.tamas .lid{position:absolute;width:4.6%;height:2.4%;background:#d9884a;border-bottom:2px solid #3a1f0e;border-radius:50% 50% 45% 45%;transform:scaleY(0);transform-origin:top;animation:blink 4.6s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(0)}95.5%{transform:scaleY(1)}}
+@media(min-width:860px){.contact{grid-template-columns:1.2fr 1fr;padding:40px 40px 0}.duo{grid-row:1/6;grid-column:2}}
+
+.crew{display:flex;align-items:flex-end;justify-content:center;gap:4%;margin:22px auto 0;max-width:460px;pointer-events:none}
+.crew .mini{width:30%;height:auto;overflow:visible;filter:drop-shadow(0 4px 0 rgba(0,0,0,.18))}
+.crew .m-kotro{width:24%}.crew .m-dar{width:21%}
+@media(min-width:860px){.crew{margin-right:0;max-width:440px}}
+.crew .mini{animation:hop 3.8s ease-in-out infinite}
+.crew .m-kotro{animation-delay:.4s}.crew .m-dar{animation-delay:.8s}
+@keyframes hop{0%,80%,100%{transform:translateY(0)}86%{transform:translateY(-7px)}92%{transform:translateY(0)}}
+.eyelid{transform-box:fill-box;transform-origin:top;transform:scaleY(0);animation:blink 5s infinite}
+.wink .eyelid{animation:wink 6s infinite}
+.wink2 .eyelid{animation:wink 6s infinite 3s}
+@keyframes wink{0%,84%,100%{transform:scaleY(0)}87%,93%{transform:scaleY(1)}}
+.waveArm{transform-box:view-box;transform-origin:126px 70px;animation:wave 3s ease-in-out infinite}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}68%{transform:rotate(-14deg)}76%{transform:rotate(6deg)}84%{transform:rotate(-10deg)}92%{transform:rotate(0)}}
+
+footer{padding:36px 18px 24px;color:var(--muted);font-size:15px;max-width:1080px;margin:0 auto}
+
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1.5px solid var(--rule);display:flex}
+.callbar .btn{flex:1;white-space:nowrap;font-size:clamp(17px,5.4vw,21px)}
+
+/* gépkönyv-kirajzolás */
+.imgin{opacity:0;animation:imgin .8s ease forwards;animation-delay:1.3s}@keyframes imgin{to{opacity:1}}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.7s cubic-bezier(.6,.1,.3,1) forwards}
+.fillin{fill-opacity:0;animation:fillin .8s ease forwards;animation-delay:1.3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill-opacity:1}}
+.f-olive{fill:var(--m-olive)}.f-olive2{fill:var(--m-olive2)}.f-dark{fill:var(--m-dark)}.f-glass{fill:var(--m-glass)}.f-sand{fill:var(--m-sand)}.f-yel{fill:var(--m-yel)}.f-white{fill:var(--m-white)}.f-tire{fill:var(--m-tire)}.f-steel{fill:var(--m-steel)}.f-soil{fill:var(--m-soil)}.f-acc{fill:var(--accent)}.f-orange{fill:var(--m-orange)}.f-none{fill:none}
+.s{stroke:var(--stroke);stroke-linejoin:round;stroke-linecap:round}
+.retro-only{opacity:var(--retro);transition:opacity .4s}
+@media(prefers-reduced-motion:reduce){.imgin{animation:none;opacity:1}.draw{animation:none;stroke-dashoffset:0}.fillin{animation:none;fill-opacity:1}.tamas{transition:none;opacity:1;transform:none}.tamas .kar,.tamas .lid,.crew .mini,.eyelid,.waveArm{animation:none}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="seasonfx" aria-hidden="true"></canvas>
+<!-- diszkógömb: csak a mulatósnál ereszkedik le -->
+<div class="disco" aria-hidden="true"><div class="cord"></div><svg class="ball" viewBox="0 0 80 80"><defs><clipPath id="bc"><circle cx="40" cy="40" r="36"/></clipPath><pattern id="tiles" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#9aa3ad"/><rect x="1" y="1" width="8" height="8" fill="#dfe6ee"/><rect x="1" y="1" width="4" height="4" fill="#ffffff"/></pattern></defs><g clip-path="url(#bc)"><rect class="tl" x="-20" y="0" width="140" height="80" fill="url(#tiles)"/><circle cx="40" cy="40" r="36" fill="url(#shade)"/></g><radialGradient id="shade" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient><circle cx="40" cy="40" r="36" fill="none" stroke="#5c646c" stroke-width="2"/></svg></div>
+<div class="spots" aria-hidden="true"></div>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<header class="top">
+  <div class="logo">Tomasz<small>Gépi földmunka</small></div>
+  <div class="ctrls">
+    <button type="button" class="cbtn" id="musicbtn" aria-label="DJ-pult megnyitása" aria-expanded="false" aria-controls="dj"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="tt"><circle cx="11" cy="13" r="9" fill="currentColor" opacity=".9"/><circle cx="11" cy="13" r="6" fill="none" stroke="var(--panel)" stroke-width=".8"/><circle cx="11" cy="13" r="2.6" fill="var(--accent)"/></g><path d="M20 3L18 12L14 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <button type="button" class="cbtn" id="seasonbtn" aria-label="Évszak váltása"><svg id="seasonicon" viewBox="0 0 24 24" aria-hidden="true"></svg></button>
+    <button type="button" class="cbtn" id="skinbtn" aria-label="Stílus váltása"><span class="sw"></span></button>
+    <svg class="poke" id="poke" viewBox="0 0 34 40" aria-hidden="true"><path d="M12 2Q16 0 17 5V18L27 20Q32 22 31 28L28 37H11L4 26Q2 22 6 21L10 24V5Q10 3 12 2Z" fill="#fff" stroke="#14171a" stroke-width="2" stroke-linejoin="round"/></svg>
+  </div>
+</header>
+
+<!-- ============ 1. JELENET: A GAZ ============ -->
+<div class="track gaz" id="t1">
+  <div class="stage">
+    <svg id="s1" viewBox="-500 0 1000 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Rajzolt GAZ-66 terepjáró teherautó begurul és billent">
+      <defs>
+        <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+        <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" class="s" stroke-width="1" style="stroke-opacity:var(--grid)"/></pattern>
+        <radialGradient id="beam" cx="0" cy=".5" r="1"><stop offset="0" style="stop-color:var(--accent)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--accent)" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#sky1)"/>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#grid1)"/>
+      <g class="retro-only" id="sun1"><circle cx="160" cy="330" r="150" class="f-acc" opacity=".85"/><path d="M0 300H320M0 330H320M0 360H320M0 390H320" style="stroke:var(--sky2)" stroke-width="7"/></g>
+      <g class="hf"><path d="M-3000 470C-2600 360-2300 400-2000 380C-1700 330-1400 420-1100 370C-800 300-600 360-300 340C0 300 200 380 500 350C800 300 1100 380 1400 345C1700 310 2000 390 2400 360C2700 330 2900 400 3000 400V700H-3000Z" style="fill:color-mix(in srgb,var(--hill1),var(--s-tint) var(--s-mix))"/></g>
+      <g class="hn"><path d="M-3000 520C-2700 450-2400 480-2100 455C-1800 420-1500 500-1200 470C-900 430-700 480-400 460C-100 430 200 500 500 470C800 440 1100 505 1400 475C1700 450 2100 510 2400 480C2700 460 3000 520 3000 520V700H-3000Z" style="fill:color-mix(in srgb,var(--hill2),var(--s-tint) var(--s-mix))"/></g>
+      <rect x="-4000" y="528" width="8000" height="26" style="fill:var(--river)"/>
+      <rect x="-4000" y="554" width="8000" height="2000" style="fill:var(--road)"/>
+      <path d="M-4000 604H4000" style="stroke:var(--roadline)" stroke-opacity=".4" stroke-width="2"/>
+      <g class="ticks"></g>
+      <path class="pile f-sand s" stroke-width="1.5" d="M0 604Z"/>
+      <g class="grains"></g><g class="dust"></g>
+      <path class="beamShape" d="M0 0L440-80L440 80Z" fill="url(#beam)" opacity="0"/>
+
+      <!-- GAZ-66, jobbra néz; saját talaj y=304 -->
+      <g class="machine" id="gaz" tabindex="0" role="button" aria-label="GAZ-66, koppintásra dudál">
+        <g class="body s" stroke-width="2.2">
+          <rect class="draw fillin f-dark" pathLength="1" x="54" y="196" width="550" height="16" rx="3"/>
+          <!-- pótkerék a fülke mögött: jellegzetes GAZ-66 -->
+          <circle class="draw fillin f-tire" pathLength="1" cx="408" cy="150" r="36"/>
+          <circle class="fillin f-olive2" cx="408" cy="150" r="18"/>
+          <!-- hátsó sárvédő, lapos polc -->
+          <path class="draw fillin f-olive2" pathLength="1" d="M96 212V190H246V212"/>
+          <!-- billenő plató -->
+          <g class="bed">
+            <path class="sandTop fillin f-sand" d="M78 144Q150 102 222 114Q300 96 386 144Z"/>
+            <rect class="draw fillin f-olive" pathLength="1" x="64" y="140" width="328" height="56" rx="3"/>
+            <path class="draw f-none" pathLength="1" d="M70 168H386"/>
+            <path class="draw f-none" pathLength="1" d="M120 144V192M180 144V192M240 144V192M300 144V192M356 144V192"/>
+            <rect class="draw fillin f-olive2" pathLength="1" x="58" y="134" width="340" height="10" rx="2"/>
+            <rect class="draw fillin f-olive2" pathLength="1" x="54" y="136" width="10" height="62" rx="2"/>
+          </g>
+          <!-- fülke: erősen lekerekített kupola-tető, előreugró motorházorr rácsos maszkkal (GAZ-66 jelleg) -->
+          <g>
+            <path class="draw fillin f-olive" pathLength="1" d="M424 182V104Q424 62 470 60H536Q574 60 584 92L592 138Q596 148 608 150V182Z"/>
+            <path class="draw f-none" pathLength="1" d="M584 92Q589 116 592 138"/>
+            <path class="draw fillin f-glass" pathLength="1" d="M438 78H480V118H438Z"/>
+            <path class="draw fillin f-glass" pathLength="1" d="M500 74H556Q570 74 574 88L580 126H500Z"/>
+            <clipPath id="gazWin"><path d="M500 74H556Q570 74 574 88L580 126H500Z"/></clipPath>
+            <g clip-path="url(#gazWin)" stroke="none"><image class="imgin" href="tamas-fej.png" x="510" y="77" width="40" height="53"/><image class="hk hk1" href="tamas-hk.png" x="548" y="130" width="24" height="35"/></g>
+            <path class="draw f-none" pathLength="1" d="M494 70V180M506 144H522M430 150H488"/>
+            <circle class="draw fillin f-dark" pathLength="1" cx="462" cy="160" r="7"/>
+            <path class="draw fillin f-dark" pathLength="1" d="M584 96L606 90V114H594"/>
+            <rect class="fillin f-acc" x="448" y="57" width="10" height="6" rx="2"/><rect class="fillin f-acc" x="540" y="57" width="10" height="6" rx="2"/>
+            <path class="draw f-none" pathLength="1" d="M470 60V52H520V60"/>
+            <text x="502" y="170" class="fillin f-acc" stroke="none" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="17" letter-spacing="1.5">TOMASZ</text>
+          </g>
+          <!-- rácsos orr: függőleges lamellák -->
+          <path class="draw fillin f-dark" pathLength="1" d="M594 150H612V200H594Z"/>
+          <path class="draw f-none" pathLength="1" d="M598 154V196M602 154V196M606 154V196"/>
+          <!-- ponton sárvédő, elöl kiálló kerek lámpával -->
+          <path class="draw fillin f-olive2" pathLength="1" d="M406 214Q406 160 476 156Q548 154 584 180Q606 192 620 214Z"/>
+          <circle class="draw fillin f-dark" pathLength="1" cx="610" cy="186" r="13"/>
+          <circle class="lamp draw fillin f-white" pathLength="1" cx="612" cy="186" r="9"/>
+          <circle class="fillin f-acc" cx="590" cy="200" r="3.5"/>
+          <rect class="draw fillin f-dark" pathLength="1" x="602" y="206" width="30" height="12" rx="2"/>
+          <path class="draw f-none" pathLength="1" d="M630 212h8"/>
+          <rect class="draw fillin f-dark" pathLength="1" x="476" y="214" width="34" height="8" rx="2"/>
+        </g>
+        <g class="wheel" data-cx="170" data-cy="246"><g class="spin">
+          <circle cx="170" cy="246" r="58" class="f-tire s draw" stroke-width="2.2" pathLength="1"/>
+          
+          <circle cx="170" cy="246" r="29" class="f-olive s fillin" stroke-width="2"/>
+          <circle cx="170" cy="246" r="10" class="f-dark s" stroke-width="1.5"/>
+          <path d="M170 221v8M170 263v8M145 246h8M187 246h8" class="s" stroke-width="2.5"/>
+        </g></g>
+        <g class="wheel" data-cx="478" data-cy="246"><g class="spin">
+          <circle cx="478" cy="246" r="58" class="f-tire s draw" stroke-width="2.2" pathLength="1"/>
+          
+          <circle cx="478" cy="246" r="29" class="f-olive s fillin" stroke-width="2"/>
+          <circle cx="478" cy="246" r="10" class="f-dark s" stroke-width="1.5"/>
+          <path d="M478 221v8M478 263v8M453 246h8M495 246h8" class="s" stroke-width="2.5"/>
+        </g></g>
+        <g style="stroke:var(--accent);fill:var(--accent)" stroke-width="1.3" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="16" opacity=".9">
+          <path d="M170 328v-10M478 328v-10M170 323H478" fill="none"/>
+          <text x="324" y="346" text-anchor="middle" stroke="none" letter-spacing="1.5">GAZ-66 · 4×4 TEREPJÁRÓ</text>
+        </g>
+      </g>
+    </svg>
+    <div class="cap" data-from="0" data-to=".3">
+      <span class="tag">Dunakanyar teljes területén</span>
+      <h1>Tomasz Gépi Földmunka</h1>
+      <p>Hajdú Tamás. Földmunka, fakivágás, ágdarálás, szállítás.</p>
+      <a class="btn" href="tel:+36204393666">06 20 439 3666</a>
+    </div>
+    <div class="cap off" data-from=".3" data-to=".6">
+      <span class="tag">GAZ-66 · 4×4</span>
+      <h2>Ahol az út elfogy</h2>
+      <p>Összkerékhajtás, nagy terepgumi. Földúton, sárban, parton is odamegy.</p>
+    </div>
+    <div class="cap off" data-from=".6" data-to="1.01">
+      <span class="tag">Billenős plató</span>
+      <h2>Homok, sóder, föld</h2>
+      <p>Oda borítja, ahová kell.</p>
+    </div>
+    <div class="hint">Görgess le ↓</div>
+  </div>
+</div>
+
+<!-- ============ 2. JELENET: A KOTRÓ ============ -->
+<div class="track kotro" id="t2">
+  <div class="stage">
+    <svg id="s2" viewBox="-500 0 1000 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Rajzolt minikotró begurul és árkot ás">
+      <defs>
+        <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+        <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" class="s" stroke-width="1" style="stroke-opacity:var(--grid)"/></pattern>
+      </defs>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#sky2)"/>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#grid2)"/>
+      <g class="retro-only"><circle cx="-180" cy="320" r="130" class="f-acc" opacity=".85"/><path d="M-320 290H-40M-320 318H-40M-320 346H-40M-320 374H-40" style="stroke:var(--sky2)" stroke-width="6"/></g>
+      <g class="hf"><path d="M-3000 480C-2500 380-2200 430-1800 400C-1400 350-1100 440-700 400C-400 360-200 420 100 390C400 350 700 430 1000 400C1400 360 1800 440 2200 410C2600 380 2900 450 3000 450V700H-3000Z" style="fill:color-mix(in srgb,var(--hill1),var(--s-tint) var(--s-mix))"/></g>
+      <!-- kert: kerítés -->
+      <g class="hn">
+        <path d="M-3000 540H3000V700H-3000Z" style="fill:color-mix(in srgb,var(--hill2),var(--s-tint) var(--s-mix))"/>
+        <path class="fence" d="" style="stroke:var(--stroke)" stroke-opacity=".35" stroke-width="3" fill="none"/>
+      </g>
+      <rect x="-4000" y="560" width="8000" height="2000" class="f-soil" opacity=".55"/>
+      <path d="M-4000 604H4000" style="stroke:var(--roadline)" stroke-opacity=".4" stroke-width="2"/>
+      <path class="hole f-dark" d="M0 604Z"/>
+      <path class="pile2 f-soil s" stroke-width="1.5" d="M0 604Z"/>
+      <g class="grains2"></g>
+
+
+      <!-- gépszállító utánfutó, dupla tengely, hátul felhajtható rámpák; saját talaj y=304 -->
+      <g class="trailer" transform="translate(-3000 296)">
+        <g style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M300 252L362 248" fill="none" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="366" cy="248" r="6" class="f-steel"/>
+          <rect x="0" y="246" width="302" height="14" rx="2" class="f-steel"/>
+          <path d="M0 253H302" fill="none" stroke-width="1.2"/>
+          <path d="M120 260Q122 248 158 248Q194 248 196 260" class="f-dark"/>
+          <g class="ramp" transform="translate(4 252) rotate(70)"><rect x="-110" y="-4" width="110" height="8" rx="2" class="f-steel"/><path d="M-100 -4v8M-80 -4v8M-60 -4v8M-40 -4v8M-20 -4v8" fill="none" stroke-width="1.2"/></g>
+          <rect x="270" y="260" width="10" height="26" class="f-dark"/>
+        </g>
+        <g class="wheel" data-cx="138" data-cy="284"><g class="spin"><circle cx="138" cy="284" r="20" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="138" cy="284" r="9" class="f-steel"/><path d="M138 276v16M130 284h16" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+        <g class="wheel" data-cx="182" data-cy="284"><g class="spin"><circle cx="182" cy="284" r="20" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="182" cy="284" r="9" class="f-steel"/><path d="M182 276v16M174 284h16" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+      </g>
+      <!-- Range Rover: szürke, piros rácsmaszk-szegély; jobbra néz; saját talaj y=304 -->
+      <g class="rr" transform="translate(-3000 296)">
+        <g class="rrbody" style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M4 254h14" fill="none" stroke-width="5" stroke-linecap="round"/><circle cx="4" cy="254" r="4" class="f-steel"/>
+          <path d="M14 244L16 219L33 160L50 149Q60 120 70 113Q78 108 90 108L300 110Q309 111 318 120L338 142L370 166Q378 170 390 171L470 181L490 184Q505 188 512 200L522 229L520 256Q516 270 504 272H494A47 47 0 0 0 401 272L174 274A47 47 0 0 0 80 272L52 258Q22 252 14 244Z" style="fill:var(--m-rr)"/>
+          <path d="M84 104H288" fill="none" stroke-width="4" stroke-linecap="round"/>
+          <path d="M74 126Q78 122 90 122L298 124L348 170H64Z" class="f-glass"/>
+          <path d="M145 122V171M243 124V171" fill="none" stroke-width="8" stroke-linecap="butt"/>
+          <path d="M74 126Q78 122 90 122L298 124L348 170H64Z" fill="none" stroke-width="2.4"/>
+          <path d="M60 175H352" fill="none" style="stroke:var(--m-steel)" stroke-width="2.2"/>
+          <path d="M176 254H400" fill="none" style="stroke:var(--m-steel)" stroke-width="2"/>
+          <path d="M145 175V258M243 175V262M352 172Q358 220 354 266" fill="none" stroke-width="1.5"/>
+          <path d="M140 183h14M238 183h14" fill="none" stroke-width="3" stroke-linecap="round"/>
+          <path d="M364 186l5 30M371 186l5 30M378 186l5 30" fill="none" stroke-width="2.5"/>
+          <rect x="20" y="188" width="12" height="26" rx="3" fill="#c0392b"/>
+          <path d="M500 196Q516 198 520 208L502 208Z" class="f-white"/>
+          <rect x="515" y="214" width="6" height="16" rx="1.5" fill="#c0392b"/>
+          <path d="M318 162l22-4v14h-12Z" class="f-dark"/>
+        </g>
+        <g class="wheel" data-cx="127" data-cy="265"><g class="spin"><circle cx="127" cy="265" r="39" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="127" cy="265" r="25" class="f-steel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M127 242V288M104 265H150M111 249L143 281M143 249L111 281" style="stroke:var(--m-dark)" stroke-width="2.6"/><circle cx="127" cy="265" r="5" class="f-dark"/></g></g>
+        <g class="wheel" data-cx="447.5" data-cy="265"><g class="spin"><circle cx="447.5" cy="265" r="39" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="447.5" cy="265" r="25" class="f-steel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M447.5 242V288M424.5 265H470.5M431.5 249L463.5 281M463.5 249L431.5 281" style="stroke:var(--m-dark)" stroke-width="2.6"/><circle cx="447.5" cy="265" r="5" class="f-dark"/></g></g>
+      </g>
+      <!-- minikotró, jobbra ás; saját talaj y=304 -->
+      <g class="machine" id="exc" tabindex="0" role="button" aria-label="Minikotró, koppintásra kanalaz egyet">
+        <g class="s" stroke-width="2.2">
+          <!-- lánctalp -->
+          <rect class="draw fillin f-tire" pathLength="1" x="56" y="260" width="250" height="44" rx="22"/>
+          <rect class="tread" x="62" y="266" width="238" height="32" rx="16" fill="none" style="stroke:var(--m-dark)" stroke-width="7" stroke-dasharray="9 7"/>
+          <g class="rollers"><circle cx="90" cy="282" r="12" class="f-steel"/><circle cx="140" cy="282" r="9" class="f-steel"/><circle cx="182" cy="282" r="9" class="f-steel"/><circle cx="224" cy="282" r="9" class="f-steel"/><circle cx="272" cy="282" r="12" class="f-steel"/></g>
+          <!-- tolólap -->
+          <path class="draw fillin f-yel" pathLength="1" d="M306 266H322V304H300Z"/>
+          <rect class="draw fillin f-dark" pathLength="1" x="112" y="244" width="140" height="16" rx="3"/>
+          <!-- felépítmény: ellensúly és fehér fülke -->
+          <path class="draw fillin f-yel" pathLength="1" d="M80 244V196Q80 168 108 168H160V244Z"/>
+          <path class="draw fillin f-white" pathLength="1" d="M150 244V104Q150 92 162 92H232Q248 92 250 108L256 244Z"/>
+          <path class="draw fillin f-glass" pathLength="1" d="M164 104H232Q240 104 241 114L245 178H164Z"/>
+          <clipPath id="excWin"><path d="M164 104H232Q240 104 241 114L245 178H164Z"/></clipPath>
+          <g clip-path="url(#excWin)" stroke="none"><image class="imgin" href="tamas-fej.png" x="172" y="106" width="54" height="71"/><image class="hk hk2" href="tamas-hk.png" x="210" y="186" width="32" height="47"/></g>
+          <rect class="fillin f-yel" x="150" y="196" width="106" height="10"/>
+          <circle cx="238" cy="96" r="5" class="fillin f-acc"/>
+
+        </g>
+        <!-- gém, kar, kanál: külön forgó csuklók -->
+        <g class="boom" transform="translate(252 210)">
+          <path class="draw fillin f-yel s" pathLength="1" stroke-width="2.2" d="M-8-14L64-30Q86-34 152-12L154 10Q92-8 66-6L-8 14Z"/>
+          
+          <circle r="7" class="f-dark s" stroke-width="1.5"/>
+          <g class="arm" transform="translate(150 0)">
+            <rect class="draw fillin f-yel s" pathLength="1" stroke-width="2.2" x="-26" y="-9" width="138" height="18" rx="7"/><circle cx="-18" cy="-8" r="4" class="f-dark"/>
+            
+            <circle r="6" class="f-dark s" stroke-width="1.5"/>
+            <g class="bucket" transform="translate(112 0)">
+              <path class="load f-soil s" stroke-width="1.5" d="M6-4Q22-18 40-4Z" opacity="0"/>
+              <path class="draw fillin f-dark s" pathLength="1" stroke-width="2.2" d="M-6-10L40-6Q54 10 42 34L4 40Z"/>
+              <path d="M8 40l-2 8M18 39l-2 8M28 38l-2 8M38 36l-2 8" class="s" stroke-width="3"/>
+              <circle r="5" class="f-steel s" stroke-width="1.2"/>
+            </g>
+          </g>
+        </g>
+        <g class="cyl" stroke-linecap="round">
+          <g data-c="1"><line class="br" style="stroke:var(--m-dark)" stroke-width="10"/><line class="rd" stroke="#dfe3e4" stroke-width="4"/></g>
+          <g data-c="2"><line class="br" style="stroke:var(--m-dark)" stroke-width="9"/><line class="rd" stroke="#dfe3e4" stroke-width="3.6"/></g>
+          <g data-c="3"><line class="br" style="stroke:var(--m-dark)" stroke-width="8"/><line class="rd" stroke="#dfe3e4" stroke-width="3.2"/></g>
+          <circle cx="238" cy="236" r="5" class="f-dark"/>
+        </g>
+        <g style="stroke:var(--accent);fill:var(--accent)" stroke-width="1.3" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="16" opacity=".9">
+          <path d="M56 328v-10M306 328v-10M56 323H306" fill="none"/>
+          <text x="181" y="346" text-anchor="middle" stroke="none" letter-spacing="1.5">3 TONNA · SZŰK HELYRE IS</text>
+        </g>
+      </g>
+    </svg>
+    <div class="cap" data-from="0" data-to=".48">
+      <span class="tag">3 tonnás minikotró</span>
+      <h2>Befér a kertkapun</h2>
+      <p>Lemászik a rámpán, és ott is dolgozik, ahova nagy gép nem jut be.</p>
+    </div>
+    <div class="cap off" data-from=".48" data-to=".76">
+      <span class="tag">Földmunka</span>
+      <h2>Alap, medence, árok</h2>
+      <p>Kiásom az alapot, a medence helyét, a közműárkot, és elrendezem a terepet.</p>
+    </div>
+    <div class="cap off" data-from=".76" data-to="1.01">
+      <span class="tag">Egy kézből</span>
+      <h2>A földet el is viszem</h2>
+      <p>A kitermelt földet és a sittet el is szállítom.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3. JELENET: AZ ÁGDARÁLÓ ============ -->
+<div class="track darcalo" id="t3">
+  <div class="stage">
+    <svg id="s3" viewBox="-500 0 1000 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Rajzolt utánfutós ágdaráló ágakat darál">
+      <defs>
+        <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+        <pattern id="grid3" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" class="s" stroke-width="1" style="stroke-opacity:var(--grid)"/></pattern>
+      </defs>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#sky3)"/>
+      <rect x="-4000" y="-3000" width="8000" height="3600" fill="url(#grid3)"/>
+      <g class="retro-only"><circle cx="200" cy="330" r="140" class="f-acc" opacity=".85"/><path d="M50 300H350M50 330H350M50 360H350M50 390H350" style="stroke:var(--sky2)" stroke-width="7"/></g>
+      <!-- fák a háttérben -->
+      <g class="hf">
+        <path d="M-3000 500C-2400 420-2000 470-1500 440C-1000 410-600 470-100 440C400 410 900 480 1400 450C1900 420 2500 490 3000 470V700H-3000Z" style="fill:color-mix(in srgb,var(--hill1),var(--s-tint) var(--s-mix))"/>
+        <g class="trees"></g>
+      </g>
+      <rect x="-4000" y="540" width="8000" height="2000" style="fill:color-mix(in srgb,var(--hill2),var(--s-tint) var(--s-mix))"/>
+      <path d="M-4000 604H4000" style="stroke:var(--roadline)" stroke-opacity=".4" stroke-width="2"/>
+      <g class="branchPile"></g>
+      <path class="mulch f-soil s" stroke-width="1.5" d="M0 604Z"/>
+      <g class="chips"></g>
+
+
+      <!-- gépszállító utánfutó, dupla tengely, hátul felhajtható rámpák; saját talaj y=304 -->
+      <g class="trailer" transform="translate(-3000 296)">
+        <g style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M300 252L362 248" fill="none" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="366" cy="248" r="6" class="f-steel"/>
+          <rect x="0" y="246" width="302" height="14" rx="2" class="f-steel"/>
+          <path d="M0 253H302" fill="none" stroke-width="1.2"/>
+          <path d="M120 260Q122 248 158 248Q194 248 196 260" class="f-dark"/>
+          <g class="ramp" transform="translate(4 252) rotate(70)"><rect x="-110" y="-4" width="110" height="8" rx="2" class="f-steel"/><path d="M-100 -4v8M-80 -4v8M-60 -4v8M-40 -4v8M-20 -4v8" fill="none" stroke-width="1.2"/></g>
+          <rect x="270" y="260" width="10" height="26" class="f-dark"/>
+        </g>
+        <g class="wheel" data-cx="138" data-cy="284"><g class="spin"><circle cx="138" cy="284" r="20" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="138" cy="284" r="9" class="f-steel"/><path d="M138 276v16M130 284h16" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+        <g class="wheel" data-cx="182" data-cy="284"><g class="spin"><circle cx="182" cy="284" r="20" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="182" cy="284" r="9" class="f-steel"/><path d="M182 276v16M174 284h16" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+      </g>
+      <!-- Range Rover: szürke, piros rácsmaszk-szegély; jobbra néz; saját talaj y=304 -->
+      <g class="rr" transform="translate(-3000 296)">
+        <g class="rrbody" style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M4 254h14" fill="none" stroke-width="5" stroke-linecap="round"/><circle cx="4" cy="254" r="4" class="f-steel"/>
+          <path d="M14 244L16 219L33 160L50 149Q60 120 70 113Q78 108 90 108L300 110Q309 111 318 120L338 142L370 166Q378 170 390 171L470 181L490 184Q505 188 512 200L522 229L520 256Q516 270 504 272H494A47 47 0 0 0 401 272L174 274A47 47 0 0 0 80 272L52 258Q22 252 14 244Z" style="fill:var(--m-rr)"/>
+          <path d="M84 104H288" fill="none" stroke-width="4" stroke-linecap="round"/>
+          <path d="M74 126Q78 122 90 122L298 124L348 170H64Z" class="f-glass"/>
+          <path d="M145 122V171M243 124V171" fill="none" stroke-width="8" stroke-linecap="butt"/>
+          <path d="M74 126Q78 122 90 122L298 124L348 170H64Z" fill="none" stroke-width="2.4"/>
+          <path d="M60 175H352" fill="none" style="stroke:var(--m-steel)" stroke-width="2.2"/>
+          <path d="M176 254H400" fill="none" style="stroke:var(--m-steel)" stroke-width="2"/>
+          <path d="M145 175V258M243 175V262M352 172Q358 220 354 266" fill="none" stroke-width="1.5"/>
+          <path d="M140 183h14M238 183h14" fill="none" stroke-width="3" stroke-linecap="round"/>
+          <path d="M364 186l5 30M371 186l5 30M378 186l5 30" fill="none" stroke-width="2.5"/>
+          <rect x="20" y="188" width="12" height="26" rx="3" fill="#c0392b"/>
+          <path d="M500 196Q516 198 520 208L502 208Z" class="f-white"/>
+          <rect x="515" y="214" width="6" height="16" rx="1.5" fill="#c0392b"/>
+          <path d="M318 162l22-4v14h-12Z" class="f-dark"/>
+        </g>
+        <g class="wheel" data-cx="127" data-cy="265"><g class="spin"><circle cx="127" cy="265" r="39" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="127" cy="265" r="25" class="f-steel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M127 242V288M104 265H150M111 249L143 281M143 249L111 281" style="stroke:var(--m-dark)" stroke-width="2.6"/><circle cx="127" cy="265" r="5" class="f-dark"/></g></g>
+        <g class="wheel" data-cx="447.5" data-cy="265"><g class="spin"><circle cx="447.5" cy="265" r="39" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="447.5" cy="265" r="25" class="f-steel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M447.5 242V288M424.5 265H470.5M431.5 249L463.5 281M463.5 249L431.5 281" style="stroke:var(--m-dark)" stroke-width="2.6"/><circle cx="447.5" cy="265" r="5" class="f-dark"/></g></g>
+      </g>
+      <!-- ágdaráló, jobbra néz; saját talaj y=304 -->
+      <g class="machine" id="chip" tabindex="0" role="button" aria-label="Ágdaráló, koppintásra pörget">
+        <g class="feed"></g>
+        <g class="s" stroke-width="2.2">
+          <path class="draw fillin f-dark" pathLength="1" d="M300 246L392 262M392 262h10"/>
+          <circle cx="408" cy="262" r="7" class="f-none" stroke-width="3"/>
+          <path class="draw fillin f-dark" pathLength="1" d="M362 256V292H352"/>
+          <rect class="draw fillin f-dark" pathLength="1" x="58" y="234" width="250" height="14" rx="3"/>
+          <!-- garat (hátul, bal) -->
+          <path class="draw fillin f-orange" pathLength="1" d="M152 228L58 176L44 238L152 240Z" style="filter:brightness(.85)"/>
+          <path class="draw fillin f-dark" pathLength="1" d="M58 180L50 232"/>
+          <path class="draw fillin f-yel" pathLength="1" d="M60 172L64 166M66 240H140" />
+          <!-- motorház -->
+          <path class="draw fillin f-orange" pathLength="1" d="M150 240V150Q150 128 172 128H290Q304 128 304 142V240Z"/>
+          <rect class="fillin f-white" x="246" y="160" width="40" height="22" rx="2"/>
+          <path d="M252 168h28M252 174h18" stroke-width="1.6"/>
+          <path class="draw f-none" pathLength="1" d="M262 200h30M262 210h30M262 220h30"/>
+          <!-- rotor ablak -->
+          <circle class="draw fillin f-dark" pathLength="1" cx="196" cy="190" r="34"/>
+          <g class="rotor"><circle cx="196" cy="190" r="24" class="f-steel"/><path d="M196 166V214M172 190H220M179 173L213 207M213 173L179 207" stroke-width="3"/><circle cx="196" cy="190" r="6" class="f-dark"/></g>
+          <!-- kifúvó cső -->
+          <path class="draw fillin f-orange" pathLength="1" d="M214 130V72Q216 40 254 34L300 30L302 54L258 58Q238 62 238 76V130Z"/>
+          <path class="draw fillin f-dark" pathLength="1" d="M298 24L318 30L316 58L300 56Z"/>
+          <!-- kerék -->
+        </g>
+        <g class="wheel" data-cx="180" data-cy="270"><g class="spin">
+          <circle cx="180" cy="270" r="34" class="f-tire s draw" stroke-width="2.2" pathLength="1"/>
+          <circle cx="180" cy="270" r="29" class="f-none" style="stroke:var(--m-dark)" stroke-width="8" stroke-dasharray="8 6"/>
+          <circle cx="180" cy="270" r="16" class="f-steel s" stroke-width="2"/>
+          <path d="M180 258v6M180 276v6M168 270h6M186 270h6" class="s" stroke-width="2.2"/>
+        </g></g>
+        <path d="M128 240Q130 222 180 220Q230 222 232 240" class="f-dark s" stroke-width="2.2"/>
+        <g style="stroke:var(--accent);fill:var(--accent)" stroke-width="1.3" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="16" opacity=".9">
+          <path d="M44 328v-10M408 328v-10M44 323H408" fill="none"/>
+          <text x="226" y="346" text-anchor="middle" stroke="none" letter-spacing="1.5">ÁGDARÁLÓ · HELYBEN DARÁL</text>
+        </g>
+      </g>
+    
+      <!-- kompakt rakodó (489), balra néz: tükrözve; saját talaj y=304 -->
+      <g class="loader" transform="translate(4000 296) scale(-1 1)">
+        <g style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round">
+          <path d="M18 272V200Q18 184 36 184H118L172 214V272Z" class="f-yel"/>
+          <rect x="64" y="116" width="78" height="100" rx="8" class="f-dark"/>
+          <rect x="74" y="126" width="58" height="72" rx="4" class="f-glass"/>
+          <path d="M84 126V198M96 126V198M108 126V198M120 126V198" fill="none" stroke-width="1.5"/>
+          <rect x="22" y="196" width="34" height="48" rx="4" class="f-yel"/>
+          <path d="M28 206h22M28 216h22M28 226h22" fill="none" stroke-width="1.6"/>
+        </g>
+        <g class="larm" transform="translate(40 150)">
+          <path d="M-10-12L118-12L160 36L172 94L152 98L138 46L108 12L-10 12Z" class="f-yel" style="stroke:var(--m-dark)" stroke-width="2.2" stroke-linejoin="round"/>
+          <text x="60" y="6" transform="scale(-1 1) translate(-140 0)" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="17" style="fill:var(--m-dark)" stroke="none">489</text>
+          <circle r="7" class="f-dark"/>
+          <g class="lbucket" transform="translate(164 96)">
+            <path class="lload f-soil" d="M2-30Q18-46 34-30Z" opacity="0" style="stroke:var(--m-dark)" stroke-width="1.5"/>
+            <path d="M-4-34H30L46 4Q46 14 36 14H-4Z" class="f-dark" style="stroke:var(--m-dark)" stroke-width="2.2"/>
+            <path d="M46 4H54" style="stroke:var(--m-steel)" stroke-width="4"/>
+            <circle r="5" class="f-steel"/>
+          </g>
+        </g>
+        <g class="wheel" data-cx="58" data-cy="278"><g class="spin"><circle cx="58" cy="278" r="26" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="58" cy="278" r="12" class="f-yel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M58 266v24M46 278h24" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+        <g class="wheel" data-cx="138" data-cy="278"><g class="spin"><circle cx="138" cy="278" r="26" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="138" cy="278" r="12" class="f-yel" style="stroke:var(--m-dark)" stroke-width="1.5"/><path d="M138 266v24M126 278h24" style="stroke:var(--m-dark)" stroke-width="2"/></g></g>
+      </g>
+    </svg>
+    <div class="cap" data-from="0" data-to=".48">
+      <span class="tag">Ágdaráló</span>
+      <h2>Helyben darálok</h2>
+      <p>Kiviszem a darálót, és ott dolgozom a kertben.</p>
+    </div>
+    <div class="cap off" data-from=".48" data-to=".72">
+      <span class="tag">Fa és telek</span>
+      <h2>Fakivágás után</h2>
+      <p>A levágott ágakat ott helyben ledarálom.</p>
+    </div>
+    <div class="cap off" data-from=".72" data-to="1.01">
+      <span class="tag">Mulcs</span>
+      <h2>A darálék jól jön</h2>
+      <p>Jó mulcsnak és komposztnak. Ha nincs rá szükség, elszállítom.</p>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section class="block" id="szolgaltatasok">
+    <div class="wrap">
+      <div class="k">Szolgáltatások</div>
+      <h2>Amit vállalok</h2>
+      <div class="svcs">
+        <div class="svc">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 52H58" class="s" stroke-width="3"/><path d="M14 52V40H30V52" class="f-yel s" stroke-width="2.5"/><path d="M30 44L44 22L54 30" class="f-none s" stroke-width="4"/><path d="M50 28L58 34L52 42L46 38Z" class="f-dark s" stroke-width="2"/></svg>
+          <div><h3>Földmunka</h3><ul><li>Alapásás házhoz, kerítéshez</li><li>Kerti medence helye</li><li>Tereprendezés, szintezés</li><li>Közműárok, csatorna</li><li>Útalap, kocsibeálló</li><li>Bontás</li></ul></div>
+        </div>
+        <div class="svc">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 52H58" class="s" stroke-width="3"/><path d="M22 52V30" class="s" stroke-width="5"/><circle cx="22" cy="22" r="13" class="f-olive s" stroke-width="2.5"/><rect x="38" y="38" width="20" height="12" rx="2" class="f-acc s" stroke-width="2"/><path d="M48 38L54 24" class="s" stroke-width="4"/></svg>
+          <div><h3>Fa és telek</h3><ul><li>Fakivágás, darabolva is</li><li>Favágás</li><li>Ágdarálás helyben, a darálék mulcsnak jó</li><li>Telektakarítás</li><li>Fűnyírás</li></ul></div>
+        </div>
+        <div class="svc">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 52H60" class="s" stroke-width="3"/><path d="M8 30H36V44H8Z" class="f-olive s" stroke-width="2.5"/><path d="M38 44V22Q38 18 42 18H52Q56 18 57 22L58 44Z" class="f-olive s" stroke-width="2.5"/><circle cx="16" cy="48" r="6" class="f-tire s" stroke-width="2"/><circle cx="48" cy="48" r="6" class="f-tire s" stroke-width="2"/><path d="M10 30Q20 20 34 30" class="f-sand s" stroke-width="2"/></svg>
+          <div><h3>Szállítás</h3><ul><li>Föld és sitt elszállítása</li><li>Homok, sóder, szóródó anyag terepjáróval</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="menet">
+    <div class="wrap">
+      <div class="k">Menete</div>
+      <h2>Így megy</h2>
+      <ol class="steps">
+        <li><div><strong>Ön felhív</strong><span>Elmondja, mit szeretne, és hol.</span></div></li>
+        <li><div><strong>Kimegyek</strong><span>Megnézem a helyszínt. Ingyenes.</span></div></li>
+        <li><div><strong>Megbeszéljük</strong><span>Az árat és az időpontot.</span></div></li>
+        <li><div><strong>Elvégzem</strong><span>A földet, a sittet, az ágat, akár a mulcsot is elviszem.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="kapcsolat">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Hívja Tamást</h2>
+        <a class="num" href="tel:+36204393666">06 20 439 3666</a>
+        <p>Dunakanyar teljes területén és Pest megyében. A helyszíni felmérés ingyenes.</p>
+        <p><a class="fb" href="https://www.facebook.com/kerteszet.tuzifa/">Facebook-oldal</a></p>
+        <!-- Tamás: illusztráció két rétegben (test + kar), pislogással -->
+        <div class="duo">
+        <div class="tamas" id="tamas" role="img" aria-label="Hajdú Tamás illusztrációja feltartott hüvelykujjal">
+          <img src="tamas-test.png" alt="" width="656" height="600">
+          <img class="kar" src="tamas-kar.png" alt="" width="656" height="600">
+          <span class="lid" style="left:41.3%;top:21.9%"></span>
+          <span class="lid" style="left:51.7%;top:20.7%"></span>
+        </div>
+
+        </div>
+      </div>
+        <!-- a csapat: kis gépek szemmel, a sárga kártya alatt -->
+        <div class="crew" aria-hidden="true">
+          <svg class="mini m-gaz" viewBox="0 0 200 140">
+            <g style="stroke:var(--m-dark)" stroke-width="2.4" stroke-linejoin="round">
+              <rect x="8" y="48" width="96" height="50" rx="5" class="f-olive"/>
+              <path d="M8 66H104M36 48V98M70 48V98" fill="none" stroke-width="1.6"/>
+              <path d="M110 100V44Q110 18 136 16H160Q178 16 182 34L186 62Q188 70 196 72V100Z" class="f-olive" style="--lidc:var(--m-olive)"/>
+              <path d="M122 26H160Q170 26 173 36L177 60H122Z" class="f-glass"/>
+              <path d="M104 104Q104 80 140 78Q176 78 192 104Z" class="f-olive2"/>
+              <circle cx="190" cy="88" r="7" class="f-white"/>
+              <path d="M170 96Q178 100 186 96" fill="none" stroke-width="2.4"/>
+            </g>
+            <g style="--lidc:var(--m-olive)"><g class="eye " data-cx="138" data-cy="44"><ellipse cx="138" cy="44" rx="9" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="138" cy="45" r="4.3" fill="#1b1b1b"/><circle class="glint" cx="140" cy="42" r="1.6" fill="#fff"/><rect class="eyelid" x="128" y="32" width="20" height="24" rx="9" style="fill:var(--lidc)"/></g><g class="eye wink" data-cx="160" data-cy="44"><ellipse cx="160" cy="44" rx="9" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="160" cy="45" r="4.3" fill="#1b1b1b"/><circle class="glint" cx="162" cy="42" r="1.6" fill="#fff"/><rect class="eyelid" x="150" y="32" width="20" height="24" rx="9" style="fill:var(--lidc)"/></g></g>
+            <g class="mw"><circle cx="46" cy="110" r="22" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="46" cy="110" r="10" class="f-olive"/></g>
+            <g class="mw"><circle cx="150" cy="110" r="22" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="150" cy="110" r="10" class="f-olive"/></g>
+          </svg>
+          <svg class="mini m-kotro" viewBox="0 0 200 140">
+            <g style="stroke:var(--m-dark)" stroke-width="2.4" stroke-linejoin="round">
+              <rect x="14" y="104" width="130" height="28" rx="14" class="f-tire"/>
+              <circle cx="32" cy="118" r="7" class="f-steel"/><circle cx="79" cy="118" r="6" class="f-steel"/><circle cx="126" cy="118" r="7" class="f-steel"/>
+              <path d="M20 104V76Q20 62 34 62H60V104Z" class="f-yel"/>
+              <path d="M54 104V30Q54 20 64 20H112Q124 20 126 32L130 104Z" class="f-white"/>
+              <path d="M64 30H112Q118 30 119 38L122 74H64Z" class="f-glass"/>
+              <g class="waveArm"><path d="M126 70L160 30L184 44" fill="none" class="s" style="stroke:var(--m-yel)" stroke-width="11" stroke-linecap="round"/><path d="M178 40L196 50L188 66L174 58Z" class="f-dark"/></g>
+            </g>
+            <g style="--lidc:var(--m-white)"><g class="eye " data-cx="80" data-cy="50"><ellipse cx="80" cy="50" rx="9" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="80" cy="51" r="4.3" fill="#1b1b1b"/><circle class="glint" cx="82" cy="48" r="1.6" fill="#fff"/><rect class="eyelid" x="70" y="38" width="20" height="24" rx="9" style="fill:var(--lidc)"/></g><g class="eye " data-cx="103" data-cy="50"><ellipse cx="103" cy="50" rx="9" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="103" cy="51" r="4.3" fill="#1b1b1b"/><circle class="glint" cx="105" cy="48" r="1.6" fill="#fff"/><rect class="eyelid" x="93" y="38" width="20" height="24" rx="9" style="fill:var(--lidc)"/></g></g>
+          </svg>
+          <svg class="mini m-dar" viewBox="0 0 200 140">
+            <g style="stroke:var(--m-dark)" stroke-width="2.4" stroke-linejoin="round">
+              <path d="M56 96L14 74L8 104L56 106Z" class="f-orange" style="filter:brightness(.85)"/>
+              <path d="M54 108V48Q54 36 66 36H134Q146 36 146 48V108Z" class="f-orange"/>
+              <path d="M112 38V14Q114 2 128 2H160V14H130Q126 14 126 20V38Z" class="f-orange"/>
+              <path d="M146 100L184 110" fill="none" stroke-width="4"/><circle cx="188" cy="111" r="4" fill="none" stroke-width="3"/>
+              <path d="M80 90Q98 100 116 90" fill="none" stroke-width="2.6"/>
+            </g>
+            <g class="mw"><circle cx="100" cy="116" r="18" class="f-tire" style="stroke:var(--m-dark)" stroke-width="2"/><circle cx="100" cy="116" r="8" class="f-steel"/></g>
+            <g style="--lidc:var(--m-orange)"><g class="eye wink2" data-cx="84" data-cy="66"><ellipse cx="84" cy="66" rx="10" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="84" cy="67" r="4.8" fill="#1b1b1b"/><circle class="glint" cx="86" cy="64" r="1.6" fill="#fff"/><rect class="eyelid" x="73" y="54" width="22" height="24" rx="10" style="fill:var(--lidc)"/></g><g class="eye " data-cx="114" data-cy="66"><ellipse cx="114" cy="66" rx="10" ry="11" class="f-white" style="stroke:var(--m-dark)" stroke-width="2"/><circle class="pupil" cx="114" cy="67" r="4.8" fill="#1b1b1b"/><circle class="glint" cx="116" cy="64" r="1.6" fill="#fff"/><rect class="eyelid" x="103" y="54" width="22" height="24" rx="10" style="fill:var(--lidc)"/></g></g>
+          </svg>
+        </div>
+    </div>
+  </section>
+
+  <section class="block" id="video">
+    <div class="wrap">
+      <div class="k">Videó</div>
+      <h2>Egy munkanap 20 másodpercben</h2>
+      <div class="reelbox"><video src="tomasz-reel.mp4" poster="tomasz-reel.jpg" controls playsinline preload="none" width="1080" height="1920"></video></div>
+    </div>
+  </section>
+</main>
+
+<footer>Tomasz Gépi Földmunka · Hajdú Tamás<br>Bemutató változat, még nem nyilvános. Minden kép rajzolt.</footer>
+
+
+<!-- DJ-pult: innen irányítható az oldal -->
+<div class="dj" id="dj" hidden>
+  <div class="dj-top"><strong>Tomasz DJ-pult</strong><span class="now" id="djnow"></span><button type="button" class="dj-x" id="djmin" aria-label="Pult kicsinyítése" aria-expanded="true">▾</button><button type="button" class="dj-x" id="djx" aria-label="DJ-pult bezárása">×</button></div>
+  <div class="decks">
+    <button type="button" class="deck" data-t="1" aria-label="A · Disco"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="plat"><circle cx="60" cy="60" r="54" fill="#141517"/><circle cx="60" cy="60" r="46" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="38" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="30" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="16" style="fill:var(--accent)"/><path d="M60 46a14 14 0 0 1 12 7" fill="none" stroke="#141517" stroke-width="3"/><circle cx="60" cy="60" r="3" fill="#141517"/></g><path class="arm" d="M108 10L104 40L82 60" fill="none" stroke="#c9ccd0" stroke-width="4" stroke-linecap="round"/><circle cx="108" cy="10" r="6" fill="#c9ccd0"/></svg><span>A · Disco</span></button>
+    <button type="button" class="deck" data-t="2" aria-label="B · Techno"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="plat"><circle cx="60" cy="60" r="54" fill="#141517"/><circle cx="60" cy="60" r="46" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="38" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="30" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="16" style="fill:var(--m-olive)"/><path d="M60 46a14 14 0 0 1 12 7" fill="none" stroke="#141517" stroke-width="3"/><circle cx="60" cy="60" r="3" fill="#141517"/></g><path class="arm" d="M108 10L104 40L82 60" fill="none" stroke="#c9ccd0" stroke-width="4" stroke-linecap="round"/><circle cx="108" cy="10" r="6" fill="#c9ccd0"/></svg><span>B · Techno</span></button>
+    <button type="button" class="deck" data-t="3" aria-label="C · Mulatós"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="plat"><circle cx="60" cy="60" r="54" fill="#141517"/><circle cx="60" cy="60" r="46" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="38" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="30" fill="none" stroke="#2a2c30" stroke-width="2"/><circle cx="60" cy="60" r="16" style="fill:#d0522a"/><path d="M60 46a14 14 0 0 1 12 7" fill="none" stroke="#141517" stroke-width="3"/><circle cx="60" cy="60" r="3" fill="#141517"/></g><path class="arm" d="M108 10L104 40L82 60" fill="none" stroke="#c9ccd0" stroke-width="4" stroke-linecap="round"/><circle cx="108" cy="10" r="6" fill="#c9ccd0"/></svg><span>C · Mulatós</span></button>
+  </div>
+  <div class="tempo"><span class="bpm" id="bpm">– BPM</span><label class="tl" for="tempo">Tempó</label><input type="range" id="tempo" min="80" max="125" step="1" value="100"><button type="button" class="stop" id="djstop">Stop</button></div>
+  <div class="knobs">
+    <button type="button" class="knob" id="kSeason"><span class="kn"><i></i></span><span class="kl">Évszak<b id="kSeasonV">Ősz</b></span></button>
+    <button type="button" class="knob" id="kSkin"><span class="kn"><i></i></span><span class="kl">Stílus<b id="kSkinV">Gépkönyv</b></span></button>
+  </div>
+  <div class="pads">
+    <button type="button" class="pad" id="pHorn">Duda</button>
+    <button type="button" class="pad" id="pScoop">Kanál</button>
+    <button type="button" class="pad" id="pChip">Daráló</button>
+  </div>
+</div>
+
+<!-- haladásjelző: hol tartunk az oldalon -->
+<nav class="rail" id="rail" aria-label="Az oldal részei">
+  <div class="rtrack"><div class="rfill" id="rfill"></div></div>
+  <div class="rdots" id="rdots"></div>
+  <svg class="rgaz" id="rgaz" viewBox="0 0 28 20" aria-hidden="true"><rect x="1" y="6" width="14" height="8" rx="1.5" style="fill:var(--m-olive);stroke:var(--m-dark)" stroke-width="1.2"/><path d="M15 15V5Q15 2 18 2H22Q25 2 25.5 5L26.5 15Z" style="fill:var(--m-olive);stroke:var(--m-dark)" stroke-width="1.2"/><rect x="18" y="4" width="5.5" height="4.5" rx="1" style="fill:var(--m-glass)"/><circle cx="6" cy="16" r="3.4" style="fill:var(--m-tire);stroke:var(--m-dark)" stroke-width="1"/><circle cx="21" cy="16" r="3.4" style="fill:var(--m-tire);stroke:var(--m-dark)" stroke-width="1"/></svg>
+  <div class="rlabel" id="rlabel" aria-live="polite"></div>
+</nav>
+<div class="callbar"><a class="btn" href="tel:+36204393666">Hívás: 06 20 439 3666</a></div>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function clamp(v,a,b){return v<a?a:v>b?b:v}
+  function ease(t){return 1-Math.pow(1-t,3)}
+  function seg(p,a,b){return clamp((p-a)/(b-a),0,1)}
+  function lerp(a,b,t){return a+(b-a)*t}
+
+  // --- skin ---
+  var root=document.documentElement, SK=[['gepkonyv','Gépkönyv'],['retro','Retró'],['nappal','Nappal'],['tervrajz','Tervrajz']];
+  var SE=[['tavasz','Tavasz'],['nyar','Nyár'],['osz','Ősz'],['tel','Tél']];
+  var ICON={tavasz:'<circle cx="12" cy="12" r="3" fill="var(--accent)"/><g fill="#f3b3c6" stroke="var(--m-dark)" stroke-width="1"><circle cx="12" cy="5.5" r="3.4"/><circle cx="18.2" cy="10" r="3.4"/><circle cx="15.8" cy="17.4" r="3.4"/><circle cx="8.2" cy="17.4" r="3.4"/><circle cx="5.8" cy="10" r="3.4"/></g><circle cx="12" cy="12" r="2.6" fill="var(--accent)"/>',
+    nyar:'<circle cx="12" cy="12" r="5" fill="var(--accent)" stroke="var(--m-dark)" stroke-width="1.2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>',
+    osz:'<path d="M5 19C4 11 9 4 20 4C20 14 14 20 5 19Z" fill="#d9742a" stroke="var(--m-dark)" stroke-width="1.2"/><path d="M5 19L15 9M9 15H13M11 13V9" stroke="var(--m-dark)" stroke-width="1.2" fill="none"/>',
+    tel:'<g stroke="#bfe3ff" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10"/><path d="M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5"/></g>'};
+  var sbtn=document.getElementById('seasonbtn'), kbtn=document.getElementById('skinbtn'), sico=document.getElementById('seasonicon'), poke=document.getElementById('poke'), toast=document.getElementById('toast'), tt=null;
+  function say(t){toast.textContent=t;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},900)}
+  function setSkin(k,show){var i=SK.findIndex(function(x){return x[0]===k});if(i<0)i=0;root.setAttribute('data-skin',SK[i][0]);kbtn.setAttribute('aria-label','Stílus váltása (most: '+SK[i][1]+')');try{localStorage.setItem('tomasz-skin',SK[i][0])}catch(e){};if(show)say(SK[i][1])}
+  function setSeason(k,show){var i=SE.findIndex(function(x){return x[0]===k});if(i<0)i=2;root.setAttribute('data-season',SE[i][0]);sico.innerHTML=ICON[SE[i][0]];sbtn.setAttribute('aria-label','Évszak váltása (most: '+SE[i][1]+')');if(show)say(SE[i][1]);fx.kind=SE[i][0]}
+  function used(){poke.classList.add('gone');try{localStorage.setItem('tomasz-poked','1')}catch(e){}}
+  var fx={kind:'osz',parts:[]};
+  kbtn.onclick=function(){used();var i=SK.findIndex(function(x){return x[0]===root.getAttribute('data-skin')});setSkin(SK[(i+1)%SK.length][0],true)};
+  sbtn.onclick=function(){used();var i=SE.findIndex(function(x){return x[0]===root.getAttribute('data-season')});setSeason(SE[(i+1)%SE.length][0],true)};
+  var mo=new Date().getMonth(); setSeason(mo<2||mo==11?'tel':mo<5?'tavasz':mo<8?'nyar':'osz');
+  try{var sv=localStorage.getItem('tomasz-skin'); if(sv) setSkin(sv); if(localStorage.getItem('tomasz-poked')) poke.classList.add('gone');}catch(e){}
+
+
+  // ===== saját generált zene (WebAudio) – csak koppintásra szól =====
+  var MZ=(function(){
+    var ac=null, master=null, noise=null, timer=null, step=0, next=0, track=0;
+    function mf(m){return 440*Math.pow(2,(m-69)/12)}
+    var unlockEl=null;
+    function unlock(){ // iPhone: néma módban is szóljon (zenelejátszóként viselkedjen)
+      try{if(navigator.audioSession)navigator.audioSession.type='playback';}catch(e){}
+      try{if(!unlockEl){unlockEl=document.createElement('audio');unlockEl.setAttribute('playsinline','');unlockEl.loop=true;unlockEl.src='data:audio/wav;base64,UklGRmQfAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YUAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';}
+        var pr=unlockEl.play();if(pr&&pr.catch)pr.catch(function(){});}catch(e){}
+    }
+    function init(){unlock();ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      if(!master){var comp=ac.createDynamicsCompressor();comp.threshold.value=-16;comp.ratio.value=5;comp.knee.value=6;var post=ac.createGain();post.gain.value=1.35;master=ac.createGain();master.gain.value=.7;master.connect(comp);comp.connect(post);post.connect(ac.destination);
+        noise=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);var d=noise.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;}}
+    function env(g,t,a,peak,dec){g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+a);g.gain.exponentialRampToValueAtTime(0.0001,t+a+dec);}
+    function kick(t){var o=ac.createOscillator(),g=ac.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(42,t+.13);env(g,t,.003,.9,.32);o.connect(g);g.connect(master);o.start(t);o.stop(t+.4);}
+    function nz(t,type,f,q,peak,dec){var b=ac.createBufferSource(),fl=ac.createBiquadFilter(),g=ac.createGain();b.buffer=noise;fl.type=type;fl.frequency.value=f;fl.Q.value=q;env(g,t,.002,peak,dec);b.connect(fl);fl.connect(g);g.connect(master);b.start(t);b.stop(t+dec+.05);}
+    function hat(t,open){nz(t,'highpass',7500,.7,open?.16:.09,open?.22:.04)}
+    function clap(t){nz(t,'bandpass',1600,1.2,.35,.12);nz(t+.012,'bandpass',1400,1.2,.25,.14)}
+    function tone(t,type,m,peak,dec,cut,q,a){var o=ac.createOscillator(),fl=ac.createBiquadFilter(),g=ac.createGain();o.type=type;o.frequency.value=mf(m);fl.type='lowpass';fl.frequency.value=cut||4000;fl.Q.value=q||.8;env(g,t,a||.005,peak,dec);o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+(a||.005)+dec+.05);}
+    function pad(t,ms,dur){ms.forEach(function(m){[-7,7].forEach(function(dt){var o=ac.createOscillator(),fl=ac.createBiquadFilter(),g=ac.createGain();o.type='sawtooth';o.frequency.value=mf(m);o.detune.value=dt;fl.type='lowpass';fl.frequency.value=1300;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(.018,t+.25);g.gain.setValueAtTime(.018,t+dur-.2);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+dur+.05);})})}
+    // 1) Dunakanyar Disco – 120 BPM, Am–F–C–G, oktávbasszus, arpeggio, saját dallam
+    var D1={bpm:120,ch:[[57,60,64],[53,57,60],[52,55,60],[55,59,62]],rt:[45,41,48,43],
+      lead:[[69,0,72,0,76,0,74,72,0,69,0,67,69,0,0,0],[65,0,69,0,72,0,74,72,0,69,0,67,64,0,0,0],[67,0,72,0,76,0,79,76,0,74,0,72,74,0,0,0],[71,0,74,0,79,0,77,74,0,71,0,69,67,0,0,0]]};
+    function play1(t,st){var bar=Math.floor(st/16)%8,b4=bar%4,i=st%16,ch=D1.ch[b4];
+      if(i%4===0)kick(t); if(i%4===2)hat(t,true); if(i===4||i===12)clap(t);
+      if(i%2===0)tone(t,'sawtooth',D1.rt[b4]+(i%4===2?12:0),.16,.16,700,6);
+      tone(t,'square',ch[i%3]+12+(i%6>2?12:0),.035,.09,2600);
+      if(i===0)pad(t,ch,8*60/D1.bpm*.98);
+      if(bar>=4){var n=D1.lead[b4][i];if(n)tone(t,'square',n+12,.05,.22,3200,1,.01);}}
+    // 2) GAZ Techno – 128 BPM, D-moll, savas basszus szűrőseprűvel
+    var D2={bpm:128,bass:[38,38,50,38,38,41,38,50,38,38,45,38,50,38,43,38],acc:[1,0,1,0,0,1,0,1,1,0,1,0,1,0,1,0]};
+    function play2(t,st){var i=st%16,bar=Math.floor(st/16)%8,ph=((st%128)/128);
+      if(i%4===0)kick(t); hat(t,i%4===2); if(i===4||i===12)clap(t);
+      var cut=350+2200*(.5-.5*Math.cos(ph*6.283));tone(t,'sawtooth',D2.bass[i],D2.acc[i]?.2:.13,.12,cut,9);
+      if((i===2||i===10)&&bar%2===0){[62,65,69].forEach(function(m){tone(t,'square',m,.03,.14,1800)})}
+      if(bar>=4&&i===14)[74,77].forEach(function(m){tone(t,'triangle',m,.05,.3,4000)});}
+    // 3) Zebegényi Mulatós – 136 BPM, G-dúr, „umcca” basszus–akkord váltás, harmonikás szinti-dallam (saját)
+    var D3={bpm:136,ch:[[55,59,62],[50,54,57],[50,54,57],[55,59,62],[55,59,62],[48,52,55],[50,54,57],[55,59,62]],rt:[43,38,38,43,43,36,38,43],
+      lead:[[67,71,74,71,79,0,74,0],[74,73,74,76,78,0,74,0],[76,74,73,74,76,78,79,81],[79,0,74,0,71,0,67,0],[71,72,74,71,74,76,79,0],[76,0,72,0,76,79,76,72],[74,0,78,0,81,79,78,76],[79,0,0,0,79,0,0,0]]};
+    function vib(t,type,m,peak,dec,cut){var o=ac.createOscillator(),l=ac.createOscillator(),lg=ac.createGain(),fl=ac.createBiquadFilter(),g=ac.createGain();o.type=type;o.frequency.value=mf(m);l.frequency.value=6;lg.gain.value=10;l.connect(lg);lg.connect(o.detune);fl.type='lowpass';fl.frequency.value=cut;env(g,t,.012,peak,dec);o.connect(fl);fl.connect(g);g.connect(master);o.start(t);l.start(t);o.stop(t+dec+.06);l.stop(t+dec+.06);}
+    function play3(t,st){var bar=Math.floor(st/16)%8,i=st%16,ch=D3.ch[bar],r=D3.rt[bar];
+      if(i%4===0){kick(t);tone(t,'triangle',r+(i%8===4?7:0),.26,.16,900,1);} 
+      if(i%4===2){nz(t,'bandpass',2200,.9,.22,.08);ch.forEach(function(m){tone(t,'square',m+12,.03,.1,2400)});}
+      if(i%2===0)hat(t,false);
+      if(i%2===0){var n=D3.lead[bar][i/2];if(n){vib(t,'sawtooth',n,.045,.2,3400);vib(t,'square',n-12,.025,.2,2200);}}}
+    var TR=[null,{f:play1,d:D1,n:'Dunakanyar Disco'},{f:play2,d:D2,n:'GAZ Techno'},{f:play3,d:D3,n:'Zebegényi Mulatós'}];
+    var tmul=1;
+
+    function sfx(k){init();if(ac.state!=='running'){try{ac.resume()}catch(e){}}var t=ac.currentTime+.02;
+      if(k==='duda'){[0,.24].forEach(function(d){tone(t+d,'square',64,.22,.2,2400);tone(t+d,'square',68,.18,.2,2400);});}
+      else if(k==='kanal'){ // hidraulika-nyüszítés + föld-csörgés
+        var o=ac.createOscillator(),fl=ac.createBiquadFilter(),g=ac.createGain();o.type='sawtooth';o.frequency.setValueAtTime(70,t);o.frequency.linearRampToValueAtTime(150,t+.45);o.frequency.linearRampToValueAtTime(95,t+.75);fl.type='lowpass';fl.frequency.value=900;fl.Q.value=4;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.35,t+.06);g.gain.setValueAtTime(.35,t+.6);g.gain.exponentialRampToValueAtTime(.0001,t+.8);o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+.85);
+        for(var i=0;i<6;i++)nz(t+.5+i*.035,'bandpass',500+Math.random()*700,1.4,.35,.07);}
+      else if(k==='daralo'){ // rotor-búgás + aprítás
+        var o2=ac.createOscillator(),g2=ac.createGain(),f2=ac.createBiquadFilter();o2.type='square';o2.frequency.setValueAtTime(45,t);o2.frequency.linearRampToValueAtTime(95,t+.35);o2.frequency.linearRampToValueAtTime(70,t+1.1);f2.type='lowpass';f2.frequency.value=700;g2.gain.setValueAtTime(.0001,t);g2.gain.exponentialRampToValueAtTime(.3,t+.12);g2.gain.setValueAtTime(.3,t+.9);g2.gain.exponentialRampToValueAtTime(.0001,t+1.15);o2.connect(f2);f2.connect(g2);g2.connect(master);o2.start(t);o2.stop(t+1.2);
+        for(var j=0;j<14;j++)nz(t+.25+j*.05,'highpass',1800+Math.random()*2500,.8,.22,.05);}
+    }
+    var kicks=[];
+    function tick(){var T=TR[track];if(!T)return;var sp=60/(T.d.bpm*tmul)/4;while(next<ac.currentTime+.12){if(step%4===0)kicks.push(next);if(kicks.length>8)kicks.shift();T.f(next,step);next+=sp;step++;}}
+    function play(n){init();if(ac.state!=='running'){try{ac.resume()}catch(e){}}if(!n&&unlockEl){try{unlockEl.pause()}catch(e){}}track=n;step=0;kicks=[];next=ac.currentTime+.06;clearInterval(timer);if(track)timer=setInterval(tick,25);return track?TR[track].n:null;}
+    return{sfx:sfx,ctx:function(){return ac},out:function(){return master},play:play,toggle:function(){return play((track+1)%TR.length)},track:function(){return track},bpm:function(){return TR[track]?Math.round(TR[track].d.bpm*tmul):0},setTempo:function(m){tmul=m},
+      pulse:function(){var R=window.__REEL;if(R&&R.t!=null){var bp=60/R.bpm,ph=((R.t-(R.off||0))%bp+bp)%bp;return (R.amp||1)*Math.exp(-ph*9);}if(!ac||!track)return 0;var amp=track===3?1.8:1;var now=ac.currentTime,t=-1;for(var i=kicks.length-1;i>=0;i--){if(kicks[i]<=now){t=kicks[i];break}}return t<0?0:amp*Math.exp(-(now-t)*9);}};
+  })();
+
+
+  window.__tomaszMZ=MZ;
+  // ===== DJ-pult =====
+  var dj=document.getElementById('dj'), djb=document.getElementById('musicbtn'), decks=[].slice.call(dj.querySelectorAll('.deck')), bpmEl=document.getElementById('bpm');
+  function djOpen(o){dj.hidden=!o;djb.setAttribute('aria-expanded',o?'true':'false');djb.setAttribute('aria-label',o?'DJ-pult bezárása':'DJ-pult megnyitása');}
+  djb.onclick=function(){used();djOpen(dj.hidden);if(!dj.hidden){djMini(false);lastY=scrollY;}};
+  document.getElementById('djx').onclick=function(){djOpen(false)};
+  var djmin=document.getElementById('djmin'); function djMini(m){dj.classList.toggle('mini',m);djmin.setAttribute('aria-expanded',m?'false':'true');djmin.setAttribute('aria-label',m?'Pult kinyitása':'Pult kicsinyítése');}
+  djmin.onclick=function(){djMini(!dj.classList.contains('mini'))};
+  var lastY=scrollY; addEventListener('scroll',function(){if(!dj.hidden&&!dj.classList.contains('mini')&&Math.abs(scrollY-lastY)>60)djMini(true);if(dj.hidden||dj.classList.contains('mini'))lastY=scrollY;},{passive:true});
+  function djSync(){var t=MZ.track();decks.forEach(function(d){d.classList.toggle('on',+d.dataset.t===t)});bpmEl.textContent=t?MZ.bpm()+' BPM':'– BPM';document.getElementById('djnow').textContent=t?'♪ '+['','Dunakanyar Disco','GAZ Techno','Zebegényi Mulatós'][t]:'';root.classList.toggle('party',t===3);djb.classList.toggle('playing',!!t);}
+  decks.forEach(function(d){d.onclick=function(){var t=+d.dataset.t;var n=MZ.play(MZ.track()===t?0:t);say(n||'Zene ki');djSync();}});
+  document.getElementById('tempo').oninput=function(e){MZ.setTempo(e.target.value/100);djSync();};
+  document.getElementById('djstop').onclick=function(){MZ.play(0);say('Zene ki');djSync();};
+  function knobSync(){var si=SE.findIndex(function(x){return x[0]===root.getAttribute('data-season')}),ki=SK.findIndex(function(x){return x[0]===root.getAttribute('data-skin')});
+    document.getElementById('kSeasonV').textContent=SE[si][1];document.getElementById('kSkinV').textContent=SK[Math.max(0,ki)][1];
+    document.querySelector('#kSeason i').style.setProperty('--k',(-135+si*90)+'deg');document.querySelector('#kSkin i').style.setProperty('--k',(-135+Math.max(0,ki)*90)+'deg');}
+  document.getElementById('kSeason').onclick=function(){sbtn.onclick();knobSync()};
+  document.getElementById('kSkin').onclick=function(){kbtn.onclick();knobSync()};
+  var _so=sbtn.onclick,_ko=kbtn.onclick; sbtn.onclick=function(){_so();knobSync()}; kbtn.onclick=function(){_ko();knobSync()};
+  knobSync();
+  (function beatLoop(){root.style.setProperty('--beat',MZ.pulse().toFixed(3));requestAnimationFrame(beatLoop)})();
+
+  // évszak-részecskék: levél, hó, szirom, nyáron pitypangpihe
+  (function(){var cv=document.getElementById('seasonfx'),cx=cv.getContext('2d'),W=0,H=0,dpr=Math.min(2,window.devicePixelRatio||1);
+    function rs(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)} rs(); addEventListener('resize',rs);
+    var N=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches?0:26;
+    function spawn(top){return{x:Math.random()*W,y:top?-20:Math.random()*H,v:.4+Math.random()*.9,a:Math.random()*6.28,s:.6+Math.random()*.8,w:Math.random()*.03+.01}}
+    for(var i=0;i<N;i++) fx.parts.push(spawn(false));
+    function draw(){cx.clearRect(0,0,W,H);var k=fx.kind;
+      fx.parts.forEach(function(q){q.a+=q.w;q.y+=q.v*(k==='tel'?1:k==='nyar'?.35:.8);q.x+=Math.sin(q.a)*(k==='osz'?1.2:.5);if(q.y>H+20){var n=spawn(true);for(var key in n)q[key]=n[key];}
+        cx.save();cx.translate(q.x,q.y);cx.rotate(q.a);cx.globalAlpha=.85;
+        if(k==='tel'){cx.fillStyle='#fff';cx.beginPath();cx.arc(0,0,2.2*q.s+1,0,6.3);cx.fill();}
+        else if(k==='osz'){cx.fillStyle=q.s>1?'#d9742a':'#c4972f';cx.beginPath();cx.ellipse(0,0,7*q.s,3.6*q.s,0,0,6.3);cx.fill();cx.strokeStyle='rgba(60,30,10,.6)';cx.lineWidth=1;cx.beginPath();cx.moveTo(-7*q.s,0);cx.lineTo(7*q.s,0);cx.stroke();}
+        else if(k==='tavasz'){cx.fillStyle='#f6bfd0';cx.beginPath();cx.ellipse(0,0,4.5*q.s,3*q.s,0,0,6.3);cx.fill();}
+        else {cx.globalAlpha=.6;cx.strokeStyle='#fffbe8';cx.lineWidth=1;for(var j=0;j<6;j++){cx.rotate(1.047);cx.beginPath();cx.moveTo(0,0);cx.lineTo(0,5*q.s);cx.stroke();}}
+        cx.restore();});
+      requestAnimationFrame(draw);} if(N) requestAnimationFrame(draw);
+  })();
+
+  // --- közös jelenet-keret ---
+  function fit(svg){
+    var r=svg.getBoundingClientRect(), a=r.width/Math.max(r.height,1);
+    var w=Math.max(700,700*a), h=w/a; if(h<700){h=700;w=h*a;}
+    var y0=Math.min(0,604-h*0.74);
+    svg.setAttribute('viewBox',(-w/2)+' '+y0.toFixed(1)+' '+w+' '+h);
+    return w;
+  }
+  function trackP(t){var r=t.getBoundingClientRect(),tot=r.height-innerHeight;return clamp(-r.top/Math.max(tot,1),0,1)}
+  function caps(stage,p){stage.querySelectorAll('.cap').forEach(function(c){c.classList.toggle('off',!(p>=+c.dataset.from&&p<+c.dataset.to))})}
+  function ticks(g,y){for(var i=-40;i<=40;i++){var t=document.createElementNS(NS,'path');t.setAttribute('d','M'+(i*160)+' '+y+' v18');t.setAttribute('style','stroke:var(--roadline)');t.setAttribute('stroke-opacity','.3');t.setAttribute('stroke-width','3');g.appendChild(t);}}
+  function particlesTo(g,list,fill){
+    while(g.firstChild) g.removeChild(g.firstChild);
+    list.forEach(function(q){var c=document.createElementNS(NS,'circle');c.setAttribute('cx',q.x.toFixed(1));c.setAttribute('cy',q.y.toFixed(1));c.setAttribute('r',q.r.toFixed(1));c.setAttribute('class',fill);if(q.o!=null)c.setAttribute('opacity',q.o.toFixed(2));g.appendChild(c);});
+  }
+
+  // ===== 1. GAZ =====
+  var t1=document.getElementById('t1'), s1=document.getElementById('s1'), st1=t1.querySelector('.stage');
+  var gaz=document.getElementById('gaz'), gBody=gaz.querySelector('.body'), bed=gaz.querySelector('.bed'), sandTop=gaz.querySelector('.sandTop');
+  var lamp=gaz.querySelector('.lamp'), beam=s1.querySelector('.beamShape'), pile=s1.querySelector('.pile');
+  var spins1=[].slice.call(gaz.querySelectorAll('.wheel')), hint=st1.querySelector('.hint');
+  ticks(s1.querySelector('.ticks'),575);
+  gaz.querySelectorAll('.wheel').forEach(function(w){var cx=+w.dataset.cx,cy=+w.dataset.cy,sp=w.firstElementChild;for(var i=0;i<22;i++){var l=document.createElementNS(NS,'path');l.setAttribute('d','M'+(cx-7)+' '+(cy-57)+'L'+cx+' '+(cy-49)+'L'+(cx+7)+' '+(cy-57));l.setAttribute('transform','rotate('+(i*360/22)+' '+cx+' '+cy+')');l.setAttribute('style','stroke:var(--m-steel)');l.setAttribute('stroke-width','4');l.setAttribute('fill','none');l.setAttribute('stroke-linejoin','round');sp.insertBefore(l,sp.children[2]);}});
+  var hk1=gaz.querySelector('.hk1');
+  var w1=fit(s1), g1={cur:0,lastX:null,ang:0,b:0,bv:0,honk:0,grains:[],dust:[]};
+
+  function upd1(p){
+    var start=-w1/2-720, x=lerp(start,0,ease(seg(p,0,.5)));
+    var dx=g1.lastX===null?0:x-g1.lastX; g1.lastX=x; g1.ang+=dx/58*57.3;
+    g1.bv+=-dx*0.02-g1.b*0.18; g1.bv*=0.82; g1.b+=g1.bv; var b=clamp(g1.b,-7,7);
+    var tilt=-42*ease(seg(p,.58,.84)), tx=x-330, ty=296;
+    gaz.setAttribute('transform','translate('+tx.toFixed(1)+' '+ty+')');
+    var bt1=MZ.pulse(); gBody.setAttribute('transform','translate(0 '+(b-bt1*5).toFixed(2)+') rotate('+(b*0.25).toFixed(2)+' 330 204)');
+    bed.setAttribute('transform','rotate('+tilt.toFixed(2)+' 58 198)');
+    spins1.forEach(function(w){w.firstElementChild.setAttribute('transform','rotate('+g1.ang.toFixed(1)+' '+w.dataset.cx+' '+w.dataset.cy+')')});
+    s1.querySelectorAll('.hf').forEach(function(e){e.setAttribute('transform','translate('+(-x*0.08).toFixed(1)+' 0)')});
+    s1.querySelectorAll('.hn').forEach(function(e){e.setAttribute('transform','translate('+(-x*0.2).toFixed(1)+' 0)')});
+    s1.querySelector('.ticks').setAttribute('transform','translate('+(-(x*0.6)%160).toFixed(1)+' 0)');
+    var pour=seg(p,.68,.94);
+    sandTop.setAttribute('transform','translate(232 '+(144+pour*22).toFixed(1)+') scale(1 '+(1-pour*0.92).toFixed(3)+') translate(-232 -144)');
+    var px=tx+30, ph=60*pour, pw=50+120*pour;
+    pile.setAttribute('d',pour>0?'M'+(px-pw)+' 604Q'+(px-pw*.35)+' '+(604-ph*1.05)+' '+px+' '+(604-ph)+'Q'+(px+pw*.35)+' '+(604-ph*1.05)+' '+(px+pw*.55)+' 604Z':'M0 604Z');
+    if(!reduce&&tilt<-18&&pour<.98&&pour>0) for(var k=0;k<2;k++) g1.grains.push({x:tx+56+Math.random()*10,y:ty+192+Math.random()*12,vx:-.6-Math.random()*1.2,vy:Math.random()*.6,r:2.6});
+    if(!reduce&&Math.abs(dx)>1.2) g1.dust.push({x:tx+108,y:598,vx:-1-Math.random()*1.5,vy:-.6-Math.random()*.8,life:1,r:6});
+    g1.grains=g1.grains.filter(function(q){q.x+=q.vx;q.y+=q.vy;q.vy+=.35;return q.y<600}).slice(-160);
+    g1.dust=g1.dust.filter(function(q){q.x+=q.vx;q.y+=q.vy;q.vy*=.97;q.life-=.025;q.r=6+(1-q.life)*14;q.o=q.life*.35;return q.life>0}).slice(-80);
+    particlesTo(s1.querySelector('.grains'),g1.grains,'f-sand'); particlesTo(s1.querySelector('.dust'),g1.dust,'f-steel');
+    g1.honk=Math.max(0,g1.honk-.03); var glow=Math.max(seg(p,.88,.97),g1.honk);
+    beam.setAttribute('transform','translate('+(tx+612)+' '+(ty+186)+')'); beam.setAttribute('opacity',(glow*.9).toFixed(2));
+    lamp.setAttribute('class','lamp '+(glow>.05?'f-acc':'f-white'));
+    hk1.setAttribute('y',(130-36*ease(seg(p,.9,.97))).toFixed(1));
+    caps(st1,p); hint.style.opacity=p<.03?1:0;
+  }
+
+
+
+  // ===== általános jármű: mozgatás + kerékforgás =====
+  function Veh(g){var o={g:g,last:null,ws:[].slice.call(g.querySelectorAll('.wheel')).map(function(w){return{sp:w.firstElementChild,cx:w.dataset.cx,cy:w.dataset.cy,r:+w.querySelector('circle').getAttribute('r'),a:0}})};
+    o.move=function(tx,ty,extra,sign){var dx=o.last===null?0:tx-o.last;o.last=tx;o.ws.forEach(function(w){w.a+=(sign||1)*dx/w.r*57.3;w.sp.setAttribute('transform','rotate('+w.a.toFixed(1)+' '+w.cx+' '+w.cy+')')});g.setAttribute('transform','translate('+tx.toFixed(1)+' '+ty+')'+(extra||''));};return o;}
+
+  // ===== GAZ-klón a 2. és 3. jelenethez =====
+  function GazClone(svg){
+    var g=gaz.cloneNode(true); g.removeAttribute('id'); g.removeAttribute('role'); g.removeAttribute('tabindex'); g.removeAttribute('aria-label'); g.classList.remove('machine');
+    g.querySelectorAll('[id]').forEach(function(e){e.removeAttribute('id')});
+    g.querySelectorAll('clipPath,image').forEach(function(e){e.remove()});
+    var lbl=g.lastElementChild; if(lbl&&lbl.querySelector('text')) lbl.remove();
+    var bd=g.querySelector('.bed'); if(bd) bd.removeAttribute('transform');
+    var st=g.querySelector('.sandTop'); if(st) st.setAttribute('opacity','0');
+    var hook=document.createElementNS(NS,'path'); hook.setAttribute('d','M60 206H50L46 258'); hook.setAttribute('fill','none'); hook.setAttribute('style','stroke:var(--m-dark)'); hook.setAttribute('stroke-width','6'); hook.setAttribute('stroke-linecap','round'); g.insertBefore(hook,g.firstChild);
+    svg.appendChild(g);
+    var o={g:g,last:null,ang:0,b:0,bv:0};
+    o.set=function(tx){var dx=o.last===null?0:tx-o.last;o.last=tx;o.ang+=dx/58*57.3;o.bv+=-dx*0.02-o.b*0.18;o.bv*=0.82;o.b+=o.bv;var b=Math.max(-6,Math.min(6,o.b));
+      g.setAttribute('transform','translate('+tx.toFixed(1)+' 296)');g.querySelector('.body').setAttribute('transform','translate(0 '+b.toFixed(2)+')');
+      g.querySelectorAll('.wheel').forEach(function(w){w.firstElementChild.setAttribute('transform','rotate('+o.ang.toFixed(1)+' '+w.dataset.cx+' '+w.dataset.cy+')')});};
+    return o;
+  }
+
+  // ===== 2. KOTRÓ =====
+  var t2=document.getElementById('t2'), s2=document.getElementById('s2'), st2=t2.querySelector('.stage');
+  var exc=document.getElementById('exc'), boom=exc.querySelector('.boom'), arm=exc.querySelector('.arm'), bucket=exc.querySelector('.bucket'), load=exc.querySelector('.load');
+  var rollers=exc.querySelector('.rollers'), hole=s2.querySelector('.hole'), pile2=s2.querySelector('.pile2');
+  var fence=s2.querySelector('.fence'), fd=''; for(var i=-30;i<=30;i++){fd+='M'+(i*70)+' 540v-46';} fd+='M-2100 506H2100M-2100 528H2100'; fence.setAttribute('d',fd);
+  var hk2=exc.querySelector('.hk2');
+  var w2=fit(s2), g2={lastX:null,roll:0,grains:[],extra:0};
+  // kulcskockák: [t, gém, kar, kanál]
+  var K=[[0,-40,95,20],[.2,-8,45,-30],[.45,-3,82,62],[.62,-36,72,80],[.78,-30,28,80],[.9,-30,28,-40],[1,-40,95,20]];
+  function pose(t){for(var i=0;i<K.length-1;i++){if(t<=K[i+1][0]){var u=(t-K[i][0])/(K[i+1][0]-K[i][0]);u=u*u*(3-2*u);return[lerp(K[i][1],K[i+1][1],u),lerp(K[i][2],K[i+1][2],u),lerp(K[i][3],K[i+1][3],u)]}}return K[0].slice(1)}
+  var tread=exc.querySelector('.tread');
+  var cyls=[].slice.call(exc.querySelectorAll('.cyl > g'));
+  function Rot(p,ang){var r=ang*Math.PI/180,c=Math.cos(r),s_=Math.sin(r);return[p[0]*c-p[1]*s_,p[0]*s_+p[1]*c]}
+  function add(a,b){return[a[0]+b[0],a[1]+b[1]]}
+  function setCyl(g,A,B){var br=g.querySelector('.br'),rd=g.querySelector('.rd'),M=[A[0]+(B[0]-A[0])*.58,A[1]+(B[1]-A[1])*.58],N=[A[0]+(B[0]-A[0])*.4,A[1]+(B[1]-A[1])*.4];
+    br.setAttribute('x1',A[0].toFixed(1));br.setAttribute('y1',A[1].toFixed(1));br.setAttribute('x2',M[0].toFixed(1));br.setAttribute('y2',M[1].toFixed(1));
+    rd.setAttribute('x1',N[0].toFixed(1));rd.setAttribute('y1',N[1].toFixed(1));rd.setAttribute('x2',B[0].toFixed(1));rd.setAttribute('y2',B[1].toFixed(1));}
+  function setPose(a){
+    boom.setAttribute('transform','translate(252 210) rotate('+a[0].toFixed(2)+')');
+    arm.setAttribute('transform','translate(150 0) rotate('+a[1].toFixed(2)+')');
+    bucket.setAttribute('transform','translate(112 0) rotate('+a[2].toFixed(2)+')');
+    var P0=[252,210],Wb=function(p){return add(P0,Rot(p,a[0]))},A0=Wb([150,0]),Wa=function(p){return add(A0,Rot(p,a[0]+a[1]))},K0=Wa([112,0]),Wk=function(p){return add(K0,Rot(p,a[0]+a[1]+a[2]))};
+    setCyl(cyls[0],[238,236],Wb([72,12]));
+    setCyl(cyls[1],Wb([66,-30]),Wa([-18,-8]));
+    setCyl(cyls[2],Wa([20,-12]),Wk([-6,-14]));
+  }
+  function tip(a){var r=Math.PI/180,x=252+150*Math.cos(a[0]*r),y=210+150*Math.sin(a[0]*r);x+=112*Math.cos((a[0]+a[1])*r);y+=112*Math.sin((a[0]+a[1])*r);return[x,y]}
+  var CYC=3, tap=0;
+
+  var kLbl=exc.lastElementChild, tr2=Veh(s2.querySelector('.trailer')), rr2=Veh(s2.querySelector('.rr')), ramp2=s2.querySelector('.ramp');
+  function upd2(p){
+    // 1) a Range Rover utánfutón behozza a kotrót, 2) rámpa le, a kotró lemászik, 3) rámpa fel, elhajtanak, 4) ásás
+    var tStart=-w2/2-820, tStop=40, tEnd=w2/2+1000;
+    var trX=p<.38?lerp(tStart,tStop,ease(seg(p,0,.16))):lerp(tStop,tEnd,Math.pow(seg(p,.38,.5),2));
+    var bt2=MZ.pulse(); tr2.move(trX,296-bt2*2); rr2.move(trX+362,296-bt2*3);
+    var rampA=p<.27?lerp(70,-27,ease(seg(p,.16,.2))):lerp(-27,70,ease(seg(p,.34,.38)));
+    ramp2.setAttribute('transform','translate(4 252) rotate('+rampA.toFixed(1)+')');
+    var X=p<.2?trX+20:lerp(tStop+20,-260,ease(seg(p,.2,.34))), Y=240, rot=0, hx=trX+4, c=X+181;
+    if(c<hx){var dd=hx-c; if(dd<98){Y=lerp(240,296,dd/98);rot=-27*clamp(dd/30,0,1)*clamp((98-dd)/30,0,1);} else Y=296;}
+    var x=X;
+    var dx=g2.lastX===null?0:x-g2.lastX; g2.lastX=x; g2.roll+=dx/12*57.3;
+    exc.setAttribute('transform','translate('+x.toFixed(1)+' '+(Y-(Y>=295?bt2*5:0)).toFixed(1)+') rotate('+rot.toFixed(2)+' 181 282)');
+    kLbl.style.opacity=(Y>=295.5&&p>.34)?.9:0;
+    if(g2.wasAir&&Y>=295.5&&!reduce){for(var q=0;q<10;q++) g2.grains.push({x:x+60+Math.random()*240,y:600,vx:(Math.random()-.5)*3,vy:-1-Math.random()*2,r:4});}
+    g2.wasAir=Y<295.5;
+    g2.td=(g2.td||0)+dx; tread.style.strokeDashoffset=(-g2.td).toFixed(1);
+    [].forEach.call(rollers.children,function(c){c.setAttribute('transform','rotate('+g2.roll.toFixed(1)+' '+c.getAttribute('cx')+' '+c.getAttribute('cy')+')')});
+    s2.querySelectorAll('.hf').forEach(function(e){e.setAttribute('transform','translate('+(-x*0.06).toFixed(1)+' 0)')});
+    var d=seg(p,.5,.95)*CYC, n=Math.floor(Math.min(d,CYC-1e-6)), t=d-n;
+    if(tap>0){t=1-tap;tap=Math.max(0,tap-.012);}
+    var a=(d<=0&&tap<=0)?pose(0):pose(t);
+    if(d<=0&&tap<=0){var TP=[-74,152,70],R0=pose(0),u2=ease(seg(p,.34,.44));a=[lerp(TP[0],R0[0],u2),lerp(TP[1],R0[1],u2),lerp(TP[2],R0[2],u2)];} if(MZ.track()===3&&Y>=295){a=a.slice();a[0]-=bt2*5;} setPose(a);
+    load.setAttribute('opacity',(t>.45&&t<.86)?1:0);
+    var done=Math.min(d,CYC)/CYC;
+    if(p<.48){hole.setAttribute('d','M0 604Z');pile2.setAttribute('d','M0 604Z');}
+    var hx=x+468, hd=8+38*done, hw=46+20*done;
+    if(p>=.48) hole.setAttribute('d','M'+(hx-hw)+' 604Q'+hx+' '+(604+hd*2)+' '+(hx+hw)+' 604Z');
+    var px=x+600, ph=6+64*done, pw=40+70*done;
+    if(p>=.48) pile2.setAttribute('d','M'+(px-pw)+' 604Q'+(px-pw*.3)+' '+(604-ph*1.05)+' '+px+' '+(604-ph)+'Q'+(px+pw*.3)+' '+(604-ph*1.05)+' '+(px+pw)+' 604Z');
+    if(!reduce&&t>.8&&t<.93){var tp=tip(a);for(var k=0;k<2;k++) g2.grains.push({x:x+tp[0]+Math.random()*20,y:296+tp[1]+Math.random()*10,vx:.4+Math.random()*1.2,vy:Math.random(),r:3.2});}
+    g2.grains=g2.grains.filter(function(q){q.x+=q.vx;q.y+=q.vy;q.vy+=.35;return q.y<602}).slice(-160);
+    particlesTo(s2.querySelector('.grains2'),g2.grains,'f-soil');
+    hk2.setAttribute('y',(186-46*ease(seg(p,.93,.99))).toFixed(1));
+    caps(st2,p);
+  }
+
+
+  // ===== 3. ÁGDARÁLÓ =====
+  var t3=document.getElementById('t3'), s3=document.getElementById('s3'), st3=t3.querySelector('.stage');
+  var chip=document.getElementById('chip'), rotor=chip.querySelector('.rotor'), feed=chip.querySelector('.feed'), wheel3=chip.querySelector('.wheel');
+  var mulch=s3.querySelector('.mulch'), bp=s3.querySelector('.branchPile');
+  (function(){var tr=s3.querySelector('.trees'),d='';for(var i=-14;i<=14;i++){var x=i*190+((i*53)%60),h=70+((i*37)%40);var tk=document.createElementNS(NS,'path');tk.setAttribute('d','M'+x+' 500v-'+(h*.5));tk.setAttribute('style','stroke:var(--m-dark)');tk.setAttribute('stroke-width','6');tr.appendChild(tk);var c=document.createElementNS(NS,'circle');c.setAttribute('cx',x);c.setAttribute('cy',500-h*.6);c.setAttribute('r',h*.42);c.setAttribute('style','fill:color-mix(in srgb,var(--m-olive2),var(--s-tree) var(--s-treemix))');tr.appendChild(c);}})();
+  function branch(len,leaf){var g=document.createElementNS(NS,'g');var p=document.createElementNS(NS,'path');p.setAttribute('d','M0 0L'+len+' -6M'+(len*.35)+' -2L'+(len*.5)+' -22M'+(len*.6)+' -4L'+(len*.8)+' 14M'+(len*.75)+' -5L'+(len*.95)+' -24');p.setAttribute('style','stroke:var(--m-soil)');p.setAttribute('stroke-width','6');p.setAttribute('stroke-linecap','round');p.setAttribute('fill','none');g.appendChild(p);if(leaf){[[.5,-24],[.8,14],[.95,-26],[1,-6]].forEach(function(q){var e=document.createElementNS(NS,'ellipse');e.setAttribute('cx',len*q[0]);e.setAttribute('cy',q[1]);e.setAttribute('rx',9);e.setAttribute('ry',5);e.setAttribute('class','f-olive');g.appendChild(e);});}return g;}
+  var feedBr=branch(150,true); feed.appendChild(feedBr);
+  var pileBr=[]; for(var j=0;j<6;j++){var b=branch(130+j*8,true);bp.appendChild(b);pileBr.push(b);}
+  var w3=fit(s3), g3={lastX:null,roll:0,rot:0,chips:[],burst:0};
+  var rr3=Veh(s3.querySelector('.rr')), tr3=Veh(s3.querySelector('.trailer')), ramp3=s3.querySelector('.trailer .ramp'), ld=Veh(s3.querySelector('.loader')), larm=s3.querySelector('.larm'), lbk=s3.querySelector('.lbucket'), lload=s3.querySelector('.lload');
+  function upd3(p){
+    var tStart=-w3/2-820, tStop=40, tEnd=w3/2+1000, bt=MZ.pulse();
+    var trX=p<.36?lerp(tStart,tStop,ease(seg(p,0,.16))):lerp(tStop,tEnd,Math.pow(seg(p,.36,.46),2));
+    tr3.move(trX,296-bt*2); rr3.move(trX+362,296-bt*3);
+    var rampA=p<.26?lerp(70,-27,ease(seg(p,.16,.2))):lerp(-27,70,ease(seg(p,.32,.36)));
+    ramp3.setAttribute('transform','translate(4 252) rotate('+rampA.toFixed(1)+')');
+    var x=p<.2?trX-40:lerp(tStop-40,-260,ease(seg(p,.2,.32))), Y=240, rot=0, hx=trX+4, c=x+180;
+    if(c<hx){var dd=hx-c; if(dd<98){Y=lerp(240,296,dd/98);rot=-27*clamp(dd/30,0,1)*clamp((98-dd)/30,0,1);} else Y=296;}
+    var LX=p<.93?lerp(w3/2+420,394,ease(seg(p,.84,.92))):lerp(394,364,ease(seg(p,.93,.96)));
+    ld.move(LX,296-bt*3,' scale(-1 1)',-1);
+    var scoop=seg(p,.93,.965), lift=ease(seg(p,.965,1));
+    lbk.setAttribute('transform','translate(164 96) rotate('+(-34*scoop+10*lift).toFixed(1)+')');
+    larm.setAttribute('transform','translate(40 150) rotate('+(-38*lift).toFixed(1)+')');
+    lload.setAttribute('opacity',scoop>.6?1:0);
+    g3.scoop=scoop;
+    var dx=g3.lastX===null?0:x-g3.lastX; g3.lastX=x; g3.roll+=dx/34*57.3;
+    chip.setAttribute('transform','translate('+x.toFixed(1)+' '+(Y-(Y>=295?bt*4:0)).toFixed(1)+') rotate('+rot.toFixed(2)+' 180 300)');
+    wheel3.firstElementChild.setAttribute('transform','rotate('+g3.roll.toFixed(1)+' 180 270)');
+    chip.lastElementChild.style.opacity=(Y>=295&&p>.33)?.9:0;
+    s3.querySelectorAll('.hf').forEach(function(e){e.setAttribute('transform','translate('+(-x*0.06).toFixed(1)+' 0)')});
+    var X0=-260;
+    var d=seg(p,.48,.84)*3, n=Math.floor(Math.min(d,2.999)), t=d-n, on=d>0&&d<3;
+    g3.burst=Math.max(0,g3.burst-.01);
+    var speed=(on?16:0)+g3.burst*30; g3.rot+=speed;
+    rotor.setAttribute('transform','rotate('+g3.rot.toFixed(1)+' 196 190)');
+    chip.firstElementChild.nextElementSibling.setAttribute('transform',(on||g3.burst>0)?'translate(0 '+(Math.sin(g3.rot)*1.2).toFixed(2)+')':'');
+    // ág: balról becsúszik a garatba
+    var u=seg(t,0,.55); feedBr.setAttribute('transform','translate('+lerp(-120,40,u).toFixed(1)+' '+lerp(206,212,u).toFixed(1)+') rotate(-12) scale('+(1-u*0.85).toFixed(3)+' 1)');
+    feedBr.setAttribute('opacity',on&&t<.6?1:0);
+    // a kupacból fogynak az ágak
+    var used=Math.min(d,3)/3; pileBr.forEach(function(b,i){var vis=i<6-Math.round(used*6);b.setAttribute('opacity',vis?1:0);b.setAttribute('opacity',(p<.44&&!vis)?0:(vis?1:0));b.setAttribute('transform','translate('+(X0-130+i*10)+' '+(598-i*8)+') rotate('+(-8+i*5)+')');});
+    // mulcskupac
+    var mk=1-0.35*(g3.scoop||0), mx=X0+430, mh=(6+62*used)*mk, mw=(40+80*used)*(0.75+0.25*mk);
+    mulch.setAttribute('d','M'+(mx-mw)+' 604Q'+(mx-mw*.3)+' '+(604-mh*1.05)+' '+mx+' '+(604-mh)+'Q'+(mx+mw*.3)+' '+(604-mh*1.05)+' '+(mx+mw)+' 604Z');
+    if(!reduce&&((on&&t>.35&&t<.95)||g3.burst>.2)) for(var k=0;k<3;k++) g3.chips.push({x:X0+316,y:296+40+Math.random()*10,vx:3+Math.random()*3.5,vy:-1.5+Math.random()*2,r:2+Math.random()*1.6});
+    g3.chips=g3.chips.filter(function(q){q.x+=q.vx;q.y+=q.vy;q.vy+=.28;q.vx*=.99;return q.y<600}).slice(-220);
+    particlesTo(s3.querySelector('.chips'),g3.chips,'f-soil');
+    caps(st3,p);
+  }
+
+  // ===== hurok =====
+  var c1=0,c2=0,c3=0;
+  function loop(){
+    var p1=trackP(t1), p2=trackP(t2), p3=trackP(t3);
+    var sm=(reduce||window.__REEL)?1:.12; c1+=(p1-c1)*sm; c2+=(p2-c2)*sm; c3+=(p3-c3)*sm;
+    upd1(c1); upd2(c2); upd3(c3);
+    requestAnimationFrame(loop);
+  }
+  addEventListener('resize',function(){w1=fit(s1);w2=fit(s2);w3=fit(s3)});
+  requestAnimationFrame(loop);
+
+
+  // ===== haladásjelző =====
+  (function(){
+    var SEC=[['t1','GAZ'],['t2','Kotró'],['t3','Daráló'],['szolgaltatasok','Szolgáltatások'],['menet','Így megy'],['kapcsolat','Kapcsolat'],['video','Videó']];
+    var rail=document.getElementById('rail'),fill=document.getElementById('rfill'),dots=document.getElementById('rdots'),car=document.getElementById('rgaz'),lab=document.getElementById('rlabel'),pos=[],btns=[],cur=-1,hideT=null,lastS=-1;
+    SEC.forEach(function(x,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ugrás ide: '+x[1]);b.onclick=function(){var el=document.getElementById(x[0]);window.scrollTo({top:el.offsetTop+(i<3?2:-70),behavior:reduce?'auto':'smooth'})};dots.appendChild(b);btns.push(b)});
+    function measure(){var max=document.documentElement.scrollHeight-innerHeight;pos=SEC.map(function(x){var el=document.getElementById(x[0]);return Math.min(1,Math.max(0,(el.offsetTop-(SEC.indexOf(x)<3?0:innerHeight*.35))/max))});btns.forEach(function(b,i){b.style.top=(pos[i]*100)+'%'})}
+    function upd(){var max=document.documentElement.scrollHeight-innerHeight,pr=max>0?Math.min(1,Math.max(0,scrollY/max)):0;
+      fill.style.height=(pr*100)+'%';car.style.top=(pr*100)+'%';lab.style.top=(pr*100)+'%';
+      var k=0;for(var i=0;i<pos.length;i++){if(pr>=pos[i]-0.002)k=i}
+      if(k!==cur){cur=k;btns.forEach(function(b,i){b.classList.toggle('on',i===k)});lab.textContent=SEC[k][1];}
+      if(Math.abs(scrollY-lastS)>2){lab.classList.add('on');clearTimeout(hideT);hideT=setTimeout(function(){lab.classList.remove('on')},1200);lastS=scrollY;}}
+    measure();addEventListener('resize',function(){measure();upd()});addEventListener('load',function(){measure();upd()});
+    addEventListener('scroll',upd,{passive:true});upd();
+  })();
+
+  // ===== koppintások =====
+  var ac=null;
+  function beep(f1,f2,rep){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();for(var i=0;i<rep;i++){var t0=ac.currentTime+i*.22,o=ac.createOscillator(),o2=ac.createOscillator(),g=ac.createGain();o.type=o2.type='square';o.frequency.value=f1;o2.frequency.value=f2;g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(.07,t0+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+.18);o.connect(g);o2.connect(g);g.connect(ac.destination);o.start(t0);o2.start(t0);o.stop(t0+.2);o2.stop(t0+.2);}}catch(e){}}
+  function horn(){g1.honk=1;g1.bv+=2.5;MZ.sfx('duda')}
+  function scoop(){tap=1;MZ.sfx('kanal')}
+  document.getElementById('pHorn').onclick=function(){horn()};
+  document.getElementById('pScoop').onclick=function(){scoop()};
+  document.getElementById('pChip').onclick=function(){g3.burst=1;MZ.sfx('daralo')};
+  [['gaz',horn],['exc',scoop],['chip',function(){g3.burst=1;MZ.sfx('daralo')}]].forEach(function(m){var el=document.getElementById(m[0]);el.addEventListener('click',m[1]);el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();m[1]()}})});
+
+
+  // a kis gépek szeme követi az ujjat / egeret
+  var eyes=[].slice.call(document.querySelectorAll('.crew .eye'));
+  function look(px,py){eyes.forEach(function(e){var svg=e.ownerSVGElement,r=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal,k=r.width/vb.width;var ex=r.left+(+e.dataset.cx)*k,ey=r.top+(+e.dataset.cy)*k;var dx=px-ex,dy=py-ey,d=Math.hypot(dx,dy)||1,m=Math.min(4,d/30);var pu=e.querySelector('.pupil'),gl=e.querySelector('.glint');pu.setAttribute('transform','translate('+(dx/d*m).toFixed(2)+' '+(dy/d*m).toFixed(2)+')');gl.setAttribute('transform',pu.getAttribute('transform'));});}
+  addEventListener('pointermove',function(e){look(e.clientX,e.clientY)},{passive:true});
+  addEventListener('pointerdown',function(e){look(e.clientX,e.clientY)},{passive:true});
+
+  // Tamás benéz, amikor a kapcsolat rész látszik
+  var tam=document.getElementById('tamas');
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)tam.classList.add('in')})},{threshold:.3}).observe(tam);}else tam.classList.add('in');
+})();
+</script>
+</body>
+</html>
