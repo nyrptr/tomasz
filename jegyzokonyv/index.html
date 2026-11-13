@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1D3B63">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Jegyzőkönyv – Zebegény Község Önkormányzata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --duna:#1D3B63; --duna2:#2B5287; --erdo:#2E5A3C; --arany:#B08D3C;
+  --papir:#F6F5F1; --lap:#FFFFFF; --tinta:#14181F; --halvany:#5F6672; --vonal:#DAD6CB;
+  --piros:#B4232C; --sarga:#8A6A12;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--papir);color:var(--tinta);font-family:var(--sans);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 48px}
+header{border-top:3px solid var(--arany);background:var(--lap);border-bottom:1px solid var(--vonal)}
+.fej{max-width:640px;margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center}
+.pajzs{flex:0 0 auto}
+.intezmeny{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--halvany)}
+h1{margin:2px 0 0;font-size:20px;font-weight:600;color:var(--duna);letter-spacing:-.01em}
+.duna{display:block;width:100%;height:10px}
+.sav{display:grid;grid-template-columns:1.3fr 1fr 1.2fr;border:1px solid var(--vonal);background:var(--lap);margin:16px 0 12px}
+.sav>div{padding:10px 12px;border-right:1px solid var(--vonal);min-width:0}
+.sav>div:last-child{border-right:0}
+.cimke{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--halvany)}
+.ertek{font-family:var(--mono);font-size:18px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ertek.kicsi{font-size:14px;padding-top:3px}
+.szint{height:4px;background:var(--vonal);margin:0 0 14px;overflow:hidden}
+.szint i{display:block;height:100%;width:0;background:var(--erdo);transition:width .1s linear}
+button{font-family:var(--sans);font-size:16px;border-radius:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fo{width:100%;min-height:64px;border:0;background:var(--duna);color:#fff;font-weight:600;font-size:18px;letter-spacing:.01em;display:flex;align-items:center;justify-content:center;gap:12px}
+.fo:active{background:var(--duna2)}
+.fo.megy{background:var(--piros)}
+.fo .pont{width:14px;height:14px;border-radius:50%;background:#fff}
+.fo.megy .pont{border-radius:2px;animation:villog 1.2s infinite}
+@keyframes villog{50%{opacity:.35}}
+.sor{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.masod{min-height:48px;border:1px solid var(--duna);background:var(--lap);color:var(--duna);font-weight:500;padding:8px 10px}
+.masod[aria-pressed="true"]{background:var(--sarga);border-color:var(--sarga);color:#fff}
+.masod:disabled{opacity:.4}
+.uzenet{font-size:14px;color:var(--halvany);margin:10px 0 0;min-height:20px}
+.uzenet.hiba{color:var(--piros)}
+details{background:var(--lap);border:1px solid var(--vonal);margin-top:12px}
+summary{list-style:none;padding:14px;min-height:48px;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--duna)}
+summary::-webkit-details-marker{display:none}
+summary .allapot{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--halvany)}
+summary .allapot.ok{color:var(--erdo)}
+.belso{padding:0 14px 14px;display:grid;gap:12px}
+label{display:grid;gap:4px;font-size:13px;color:var(--halvany)}
+input,select,textarea{font-family:var(--sans);font-size:16px;color:var(--tinta);background:var(--papir);border:1px solid var(--vonal);border-radius:0;padding:10px;width:100%;min-height:44px}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--duna2);outline-offset:-1px}
+.ket{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.megj{font-size:12px;color:var(--halvany)}
+.megj a{color:var(--duna)}
+h2{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--halvany);margin:28px 0 8px;font-weight:500;display:flex;justify-content:space-between}
+.leirat{background:var(--lap);border:1px solid var(--vonal);max-height:60vh;overflow-y:auto}
+.ures{padding:18px 14px;color:var(--halvany);font-size:14px}
+.szeg{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:10px 14px;border-bottom:1px solid #EEECE5}
+.szeg:last-child{border-bottom:0}
+.ido{font-family:var(--mono);font-size:12px;color:var(--halvany);padding-top:2px}
+.ki{font-weight:600;font-size:13px;color:var(--duna)}
+.szeg.szav{background:#FBF6E8}
+.szeg.szav .ki::after{content:" · szavazás";font-weight:400;color:var(--sarga)}
+.jel{padding:8px 14px;font-family:var(--mono);font-size:12px;color:var(--sarga);background:#FBF6E8;border-bottom:1px solid #EEECE5}
+.var{padding:8px 14px;font-family:var(--mono);font-size:12px;color:var(--halvany);border-bottom:1px solid #EEECE5}
+.var.hiba{color:var(--piros)}
+.tervezet{background:var(--lap);border:1px solid var(--vonal);padding:16px 14px;white-space:pre-wrap;font-size:15px;line-height:1.55;margin-top:8px}
+footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--vonal);font-size:12px;color:var(--halvany)}
+.rejt{display:none!important}
+@media (max-width:360px){.ertek{font-size:15px}.sav>div{padding:8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="fej">
+    <svg class="pajzs" width="34" height="40" viewBox="0 0 34 40" aria-hidden="true">
+      <path d="M2 2h30v20c0 9-7 14-15 16C9 36 2 31 2 22z" fill="#1D3B63"/>
+      <path d="M2 22h30c0 9-7 14-15 16C9 36 2 31 2 22z" fill="#2E5A3C"/>
+      <path d="M5 21c3-2 6-2 9 0s6 2 9 0 5-2 6-1" stroke="#fff" stroke-width="1.4" fill="none" opacity=".85"/>
+      <path d="M2 2h30v20c0 9-7 14-15 16C9 36 2 31 2 22z" fill="none" stroke="#B08D3C" stroke-width="2"/>
+    </svg>
+    <div>
+      <div class="intezmeny">Zebegény Község Önkormányzata</div>
+      <h1>Jegyzőkönyv · élő rögzítés</h1>
+    </div>
+  </div>
+  <svg class="duna" viewBox="0 0 640 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 6 C80 1 160 9 240 5 S400 1 480 6 600 8 640 4" stroke="#1D3B63" stroke-width="1.2" fill="none" opacity=".35"/></svg>
+</header>
+
+<main class="wrap">
+  <div class="sav" role="status" aria-live="polite">
+    <div><div class="cimke">Idő</div><div class="ertek" id="ido">00:00:00</div></div>
+    <div><div class="cimke">Szakasz</div><div class="ertek" id="szakasz">0 / 0</div></div>
+    <div><div class="cimke">Állapot</div><div class="ertek kicsi" id="allapot">Kész</div></div>
+  </div>
+  <div class="szint" aria-hidden="true"><i id="szint"></i></div>
+
+  <button class="fo" id="fogomb" type="button"><span class="pont"></span><span id="fogomb-szoveg">Rögzítés indítása</span></button>
+  <div class="sor">
+    <button class="masod" id="zart" type="button" aria-pressed="false" disabled>Zárt ülés</button>
+    <button class="masod" id="tervgomb" type="button" disabled>Jegyzőkönyv-tervezet</button>
+  </div>
+  <p class="uzenet" id="uzenet"></p>
+
+  <details id="ules-adatok">
+    <summary>Ülés adatai <span class="allapot" id="ules-allapot">nincs kitöltve</span></summary>
+    <div class="belso">
+      <div class="ket">
+        <label>Dátum<input type="date" id="datum"></label>
+        <label>Ülés<select id="tipus"><option>rendes</option><option>rendkívüli</option><option>alakuló</option><option>közmeghallgatás</option></select></label>
+      </div>
+      <label>Helyszín<input id="hely" value="Zebegény, Polgármesteri Hivatal tanácsterme" autocomplete="off"></label>
+      <label>Jelenlévők (soronként: név, szerep)<textarea id="jelen" placeholder="Ferenczy Ernő Ervin, polgármester&#10;…, jegyző&#10;…, képviselő"></textarea></label>
+      <label>Napirend (soronként egy pont)<textarea id="napirend" placeholder="1. …&#10;2. …"></textarea></label>
+    </div>
+  </details>
+
+  <details id="kapcsolat">
+    <summary>Feldolgozás <span class="allapot" id="kulcs-allapot">nincs kulcs</span></summary>
+    <div class="belso">
+      <label>Gemini API-kulcs<input id="kulcs" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="AIza…"></label>
+      <p class="megj">Ingyenes kulcs: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. Csak ezen a telefonon tárolódik.</p>
+      <div class="ket">
+        <label>Modell<input id="modell" placeholder="automatikus" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+        <label>Szakaszhossz<select id="hossz"><option value="120">2 perc</option><option value="180" selected>3 perc</option><option value="300">5 perc</option></select></label>
+      </div>
+      <button class="masod" id="kulcsproba" type="button">Kapcsolat próbája</button>
+    </div>
+  </details>
+
+  <h2><span>Élő leirat</span><span id="szamlalo"></span></h2>
+  <div class="leirat" id="leirat"><div class="ures">A leirat szakaszonként jelenik meg, néhány perccel a beszéd után.</div></div>
+
+  <section id="terv-blokk" class="rejt">
+    <h2><span>Jegyzőkönyv-tervezet</span><span>ellenőrzésre</span></h2>
+    <div class="sor">
+      <button class="masod" id="masol" type="button">Másolás</button>
+      <button class="masod" id="letolt" type="button">Letöltés (.txt)</button>
+    </div>
+    <div class="tervezet" id="tervezet"></div>
+  </section>
+
+  <div class="sor" style="margin-top:28px">
+    <button class="masod" id="leirat-letolt" type="button" disabled>Leirat letöltése</button>
+    <button class="masod" id="uj" type="button">Új ülés</button>
+  </div>
+
+  <footer>
+    Tervezet. A jegyzőkönyvet a jegyző ellenőrzi és hitelesíti. A hang feldolgozásra a Google Gemini szolgáltatáshoz kerül; ingyenes kulccsal a Google a tartalmat fejlesztésre is felhasználhatja. Zárt ülésnél nyomd meg a „Zárt ülés” gombot: addig nem készül felvétel.
+  </footer>
+</main>
+
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const TAROLO = 'zbg-jkv-v1';
+const CEL_HZ = 16000;
+
+const allapot = {
+  fut:false, zart:false, indulas:null, tick:null,
+  ctx:null, stream:null, node:null, wake:null,
+  minta:[], mintaDb:0, szakaszKezdet:null, szakaszIdx:0,
+  sor:[], dolgozik:false,
+  szegmensek:[],   // {ora:ms, b, s, szav} vagy {jel:'...'}
+  modell:null, tervezet:''
+};
+
+// ---------- tárolás ----------
+function ment(){
+  try{
+    localStorage.setItem(TAROLO, JSON.stringify({
+      kulcs:$('kulcs').value, modell:$('modell').value, hossz:$('hossz').value,
+      datum:$('datum').value, tipus:$('tipus').value, hely:$('hely').value,
+      jelen:$('jelen').value, napirend:$('napirend').value,
+      szegmensek:allapot.szegmensek, tervezet:allapot.tervezet
+    }));
+  }catch(e){}
+}
+function betolt(){
+  let d=null; try{ d=JSON.parse(localStorage.getItem(TAROLO)||'null'); }catch(e){}
+  if(d){
+    for(const k of ['kulcs','modell','hossz','datum','tipus','hely','jelen','napirend']) if(d[k]!=null && d[k]!=='') $(k).value=d[k];
+    allapot.szegmensek = Array.isArray(d.szegmensek)?d.szegmensek:[];
+    allapot.tervezet = d.tervezet||'';
+  }
+  if(!$('datum').value) $('datum').value = new Date().toISOString().slice(0,10);
+  rajzolLeirat(); rajzolTervezet(); fejAllapot();
+}
+['kulcs','modell','hossz','datum','tipus','hely','jelen','napirend'].forEach(id=>$(id).addEventListener('change',()=>{ment();fejAllapot();}));
+function fejAllapot(){
+  const k=$('kulcs').value.trim();
+  $('kulcs-allapot').textContent = k ? 'kulcs megadva' : 'nincs kulcs';
+  $('kulcs-allapot').classList.toggle('ok',!!k);
+  const n=$('jelen').value.trim().split('\n').filter(Boolean).length, p=$('napirend').value.trim().split('\n').filter(Boolean).length;
+  $('ules-allapot').textContent = (n||p) ? `${n} fő · ${p} napirend` : 'nincs kitöltve';
+  $('ules-allapot').classList.toggle('ok',!!(n||p));
+  if(!k) $('kapcsolat').open = true;
+}
+
+// ---------- kijelzés ----------
+const ketj = n => String(n).padStart(2,'0');
+const ora = ms => { const d=new Date(ms); return ketj(d.getHours())+':'+ketj(d.getMinutes()); };
+function uzen(t,hiba){ $('uzenet').textContent=t||''; $('uzenet').classList.toggle('hiba',!!hiba); }
+function allapotSzoveg(t){ $('allapot').textContent=t; }
+function szakaszKijelzo(){
+  const kesz=allapot.sor.filter(s=>s.st==='kész').length;
+  $('szakasz').textContent = `${kesz} / ${allapot.sor.length}`;
+}
+function idoKijelzo(){
+  if(!allapot.indulas){ $('ido').textContent='00:00:00'; return; }
+  const s=Math.floor((Date.now()-allapot.indulas)/1000);
+  $('ido').textContent = `${ketj(Math.floor(s/3600))}:${ketj(Math.floor(s/60)%60)}:${ketj(s%60)}`;
+}
+function esc(t){ return String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function rajzolLeirat(){
+  const el=$('leirat');
+  const lent = el.scrollHeight - el.scrollTop - el.clientHeight < 40;
+  let h='';
+  for(const g of allapot.szegmensek){
+    if(g.jel){ h+=`<div class="jel">${esc(g.jel)}</div>`; continue; }
+    h+=`<div class="szeg${g.szav?' szav':''}"><div class="ido">${ora(g.ora)}</div><div><div class="ki">${esc(g.b||'?')}</div><div>${esc(g.s)}</div></div></div>`;
+  }
+  for(const s of allapot.sor){
+    if(s.st==='kész') continue;
+    const t = s.st==='hiba' ? `Szakasz ${s.idx}: hiba – újrapróbálom (${esc(s.hiba||'')})` : s.st==='feldolgozás' ? `Szakasz ${s.idx}: feldolgozás…` : `Szakasz ${s.idx}: várakozik`;
+    h+=`<div class="var${s.st==='hiba'?' hiba':''}">${ora(s.kezdet)} · ${t}</div>`;
+  }
+  el.innerHTML = h || '<div class="ures">A leirat szakaszonként jelenik meg, néhány perccel a beszéd után.</div>';
+  if(lent) el.scrollTop = el.scrollHeight;
+  const db=allapot.szegmensek.filter(g=>!g.jel).length;
+  $('szamlalo').textContent = db ? db+' megszólalás' : '';
+  $('tervgomb').disabled = !db;
+  $('leirat-letolt').disabled = !db;
+}
+function rajzolTervezet(){
+  $('terv-blokk').classList.toggle('rejt',!allapot.tervezet);
+  $('tervezet').textContent = allapot.tervezet;
+}
+
+// ---------- WAV ----------
+function wav(int16){
+  const buf=new ArrayBuffer(44+int16.length*2), v=new DataView(buf);
+  const w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));};
+  w(0,'RIFF');v.setUint32(4,36+int16.length*2,true);w(8,'WAVE');w(12,'fmt ');
+  v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+  v.setUint32(24,CEL_HZ,true);v.setUint32(28,CEL_HZ*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);
+  w(36,'data');v.setUint32(40,int16.length*2,true);
+  new Int16Array(buf,44).set(int16);
+  return new Blob([buf],{type:'audio/wav'});
+}
+function b64(blob){
+  return new Promise((ok,nem)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]);r.onerror=nem;r.readAsDataURL(blob);});
+}
+
+// ---------- felvétel ----------
+let maradek=new Float32Array(0);
+function lekeverIn(f32, forrasHz){
+  const arany=forrasHz/CEL_HZ;
+  const adat=new Float32Array(maradek.length+f32.length); adat.set(maradek); adat.set(f32,maradek.length);
+  const n=Math.floor(adat.length/arany), ki=new Int16Array(n);
+  let csucs=0;
+  for(let i=0;i<n;i++){
+    const a=Math.floor(i*arany), b=Math.max(a+1,Math.floor((i+1)*arany));
+    let s=0; for(let j=a;j<b;j++) s+=adat[j];
+    let x=s/(b-a); const ax=Math.abs(x); if(ax>csucs)csucs=ax;
+    x=Math.max(-1,Math.min(1,x)); ki[i]=x<0?x*0x8000:x*0x7FFF;
+  }
+  maradek=adat.slice(Math.floor(n*arany));
+  return {ki,csucs};
+}
+function bejovo(f32){
+  if(!allapot.fut) return;
+  const {ki,csucs}=lekeverIn(f32, allapot.ctx.sampleRate);
+  $('szint').style.width = Math.min(100,Math.round(Math.sqrt(csucs)*100))+'%';
+  if(allapot.zart) return;
+  if(!allapot.szakaszKezdet) allapot.szakaszKezdet=Date.now();
+  allapot.minta.push(ki); allapot.mintaDb+=ki.length;
+  if(allapot.mintaDb >= CEL_HZ*Number($('hossz').value)) vag();
+}
+function vag(){
+  if(!allapot.mintaDb){ allapot.szakaszKezdet=null; return; }
+  const egy=new Int16Array(allapot.mintaDb); let o=0;
+  for(const d of allapot.minta){ egy.set(d,o); o+=d.length; }
+  const hossz=allapot.mintaDb/CEL_HZ;
+  allapot.minta=[]; allapot.mintaDb=0;
+  const kezdet=allapot.szakaszKezdet; allapot.szakaszKezdet=null;
+  if(hossz<0.5) return;
+  allapot.szakaszIdx++;
+  allapot.sor.push({idx:allapot.szakaszIdx, kezdet, hossz, blob:wav(egy), st:'várakozik', proba:0});
+  szakaszKijelzo(); rajzolLeirat(); feldolgoz();
+}
+
+const WORKLET = `class G extends AudioWorkletProcessor{constructor(){super();this.b=new Float32Array(8192);this.n=0}
+process(i){const c=i[0]&&i[0][0];if(c){if(this.n+c.length>this.b.length){this.port.postMessage(this.b.slice(0,this.n));this.n=0}this.b.set(c,this.n);this.n+=c.length}return true}}
+registerProcessor('gyujto',G);`;
+
+async function indit(){
+  if(!$('kulcs').value.trim()){ $('kapcsolat').open=true; $('kulcs').focus(); uzen('Előbb add meg a Gemini API-kulcsot.',true); return; }
+  uzen('');
+  try{
+    allapot.stream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:true,channelCount:1}});
+  }catch(e){ uzen('A mikrofon nem érhető el: '+(e.message||e.name)+'. Engedélyezd a Safari beállításaiban.',true); return; }
+  const AC=window.AudioContext||window.webkitAudioContext;
+  allapot.ctx=new AC();
+  if(allapot.ctx.state==='suspended') await allapot.ctx.resume();
+  const forras=allapot.ctx.createMediaStreamSource(allapot.stream);
+  maradek=new Float32Array(0);
+  try{
+    const url=URL.createObjectURL(new Blob([WORKLET],{type:'application/javascript'}));
+    await allapot.ctx.audioWorklet.addModule(url);
+    allapot.node=new AudioWorkletNode(allapot.ctx,'gyujto');
+    allapot.node.port.onmessage=e=>bejovo(e.data);
+    const nema=allapot.ctx.createGain(); nema.gain.value=0;
+    forras.connect(allapot.node); allapot.node.connect(nema); nema.connect(allapot.ctx.destination);
+  }catch(e){
+    const sp=allapot.ctx.createScriptProcessor(4096,1,1);
+    sp.onaudioprocess=ev=>bejovo(new Float32Array(ev.inputBuffer.getChannelData(0)));
+    const nema=allapot.ctx.createGain(); nema.gain.value=0;
+    forras.connect(sp); sp.connect(nema); nema.connect(allapot.ctx.destination);
+    allapot.node=sp;
+  }
+  allapot.fut=true; allapot.indulas=allapot.indulas||Date.now();
+  allapot.szegmensek.push({ora:Date.now(),jel:`${ora(Date.now())} · Rögzítés indul`}); rajzolLeirat(); ment();
+  allapot.tick=setInterval(idoKijelzo,500);
+  await ebren();
+  $('fogomb').classList.add('megy'); $('fogomb-szoveg').textContent='Rögzítés befejezése';
+  $('zart').disabled=false; allapotSzoveg('Rögzít');
+}
+async function leallit(){
+  allapot.fut=false; vag();
+  clearInterval(allapot.tick);
+  try{ allapot.node && allapot.node.disconnect(); }catch(e){}
+  try{ allapot.stream && allapot.stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+  try{ allapot.ctx && await allapot.ctx.close(); }catch(e){}
+  try{ allapot.wake && await allapot.wake.release(); }catch(e){}
+  allapot.wake=null; allapot.zart=false; $('zart').setAttribute('aria-pressed','false');
+  allapot.szegmensek.push({ora:Date.now(),jel:`${ora(Date.now())} · Rögzítés vége`}); rajzolLeirat(); ment();
+  $('fogomb').classList.remove('megy'); $('fogomb-szoveg').textContent='Rögzítés folytatása';
+  $('zart').disabled=true; $('szint').style.width='0';
+  allapotSzoveg(allapot.sor.some(s=>s.st!=='kész')?'Feldolgoz':'Kész');
+}
+$('fogomb').addEventListener('click',()=> allapot.fut ? leallit() : indit());
+
+$('zart').addEventListener('click',()=>{
+  if(!allapot.fut) return;
+  if(!allapot.zart){ vag(); allapot.zart=true; allapot.szegmensek.push({ora:Date.now(),jel:`${ora(Date.now())} · Zárt ülés – nincs rögzítés`}); allapotSzoveg('Zárt ülés'); }
+  else { allapot.zart=false; allapot.szegmensek.push({ora:Date.now(),jel:`${ora(Date.now())} · Nyilvános ülés folytatódik`}); allapotSzoveg('Rögzít'); }
+  $('zart').setAttribute('aria-pressed',String(allapot.zart));
+  rajzolLeirat(); ment();
+});
+
+async function ebren(){
+  try{ if('wakeLock' in navigator){ allapot.wake=await navigator.wakeLock.request('screen'); return; } }catch(e){}
+  uzen('Ez a böngésző nem tartja ébren a kijelzőt: állítsd az Automatikus zárolást „Soha” értékre, és tedd töltőre a telefont.');
+}
+let rejtveOta=null;
+document.addEventListener('visibilitychange', async ()=>{
+  if(!allapot.fut) return;
+  if(document.hidden){ rejtveOta=Date.now(); return; }
+  if(allapot.ctx && allapot.ctx.state!=='running'){ try{ await allapot.ctx.resume(); }catch(e){} }
+  if(rejtveOta && Date.now()-rejtveOta>3000){
+    allapot.szegmensek.push({ora:rejtveOta,jel:`${ora(rejtveOta)}–${ora(Date.now())} · Az oldal háttérben volt, a felvétel kimaradhatott`});
+    rajzolLeirat(); ment();
+  }
+  rejtveOta=null; await ebren();
+});
+
+// ---------- Gemini ----------
+const API='https://generativelanguage.googleapis.com/v1beta/';
+async function hiv(utvonal, torzs){
+  const r=await fetch(API+utvonal,{method:torzs?'POST':'GET',headers:{'content-type':'application/json','x-goog-api-key':$('kulcs').value.trim()},body:torzs?JSON.stringify(torzs):undefined});
+  const t=await r.text(); let j=null; try{ j=JSON.parse(t); }catch(e){}
+  if(!r.ok){ const e=new Error((j&&j.error&&j.error.message)||('HTTP '+r.status)); e.kod=r.status; throw e; }
+  return j;
+}
+async function modellValaszt(){
+  const kezi=$('modell').value.trim(); if(kezi) return kezi;
+  if(allapot.modell) return allapot.modell;
+  try{
+    const j=await hiv('models?pageSize=200');
+    const nevek=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace('models/',''));
+    const ver=n=>{const m=n.match(/gemini-(\d+(?:\.\d+)?)/);return m?parseFloat(m[1]):0;};
+    const tiszta=nevek.filter(n=>/^gemini-[\d.]+-flash$/.test(n)).sort((a,b)=>ver(b)-ver(a));
+    const tobbi=nevek.filter(n=>/flash/.test(n)&&!/lite|image|tts|live|audio|embed|thinking|exp/.test(n)).sort((a,b)=>ver(b)-ver(a));
+    allapot.modell=tiszta[0]||tobbi[0]||'gemini-2.5-flash';
+  }catch(e){ if(e.kod===400||e.kod===401||e.kod===403) throw e; allapot.modell='gemini-2.5-flash'; }
+  return allapot.modell;
+}
+function szoveg(j){ return ((j.candidates||[])[0]?.content?.parts||[]).map(p=>p.text||'').join(''); }
+function ulesKontextus(){
+  return `Jelenlévők:\n${$('jelen').value.trim()||'(nincs megadva)'}\nNapirend:\n${$('napirend').value.trim()||'(nincs megadva)'}`;
+}
+function elozoVeg(){
+  const v=allapot.szegmensek.filter(g=>!g.jel).slice(-6);
+  return v.length? v.map(g=>`${g.b}: ${g.s}`).join('\n') : '(ez az első szakasz)';
+}
+function cimkek(){ return [...new Set(allapot.szegmensek.filter(g=>!g.jel).map(g=>g.b))].join(', ')||'(még nincs)'; }
+
+const SEMA={type:'ARRAY',items:{type:'OBJECT',properties:{t:{type:'STRING'},b:{type:'STRING'},s:{type:'STRING'},szavazas:{type:'BOOLEAN'}},required:['t','b','s']}};
+
+async function atir(sz){
+  const modell=await modellValaszt();
+  const prompt=`Ez egy magyar önkormányzati képviselő-testületi ülés hangfelvételének ${sz.idx}. szakasza (${ora(sz.kezdet)}-tól, kb. ${Math.round(sz.hossz)} mp).
+Feladat: írd le magyarul, pontosan, beszélőváltásonként.
+- Beszélő: név vagy szerep, ha a hangfelvételből vagy a jelenlévők listájából biztosan kiderül (pl. „Polgármester”, „Jegyző”, név). Ha nem biztos: „Beszélő 1”, „Beszélő 2”…; a korábban használt címkéket tartsd meg ugyanarra a hangra.
+- Ne találj ki semmit. Érthetetlen résznél: [érthetetlen]. Töltelékszavakat (öö, hát) hagyd el.
+- szavazas=true, ha szavazás zajlik vagy eredményt mondanak be.
+- t: a szakaszon belüli idő PP:MM formában.
+- Csend vagy zaj esetén üres tömb.
+${ulesKontextus()}
+Eddig használt beszélőcímkék: ${cimkek()}
+Az előző szakasz vége:
+${elozoVeg()}`;
+  const j=await hiv(`models/${encodeURIComponent(modell)}:generateContent`,{
+    contents:[{role:'user',parts:[{inline_data:{mime_type:'audio/wav',data:await b64(sz.blob)}},{text:prompt}]}],
+    generationConfig:{temperature:0.1,responseMimeType:'application/json',responseSchema:SEMA}
+  });
+  let tomb=[]; try{ tomb=JSON.parse(szoveg(j)||'[]'); }catch(e){ throw new Error('értelmezhetetlen válasz'); }
+  return (Array.isArray(tomb)?tomb:[]).map(x=>{
+    const m=String(x.t||'0:0').split(':').map(Number); const mp=(m.length===2?m[0]*60+m[1]:0)||0;
+    return {ora:sz.kezdet+Math.min(mp,sz.hossz)*1000, b:String(x.b||'?').trim(), s:String(x.s||'').trim(), szav:!!x.szavazas};
+  }).filter(x=>x.s);
+}
+async function feldolgoz(){
+  if(allapot.dolgozik) return; allapot.dolgozik=true;
+  try{
+    for(;;){
+      const sz=allapot.sor.find(s=>s.st==='várakozik'||s.st==='hiba');
+      if(!sz) break;
+      if(sz.st==='hiba'){ await new Promise(r=>setTimeout(r,Math.min(60000,8000*sz.proba))); }
+      sz.st='feldolgozás'; rajzolLeirat(); if(!allapot.fut) allapotSzoveg('Feldolgoz');
+      try{
+        const uj=await atir(sz);
+        sz.st='kész'; sz.blob=null;
+        // időrendbe illesztés a jelzések közé
+        allapot.szegmensek.push(...uj);
+        allapot.szegmensek.sort((a,b)=>(a.ora||0)-(b.ora||0));
+        uzen('');
+      }catch(e){
+        sz.proba++; sz.st='hiba'; sz.hiba=e.message;
+        if(e.kod===400||e.kod===401||e.kod===403){ uzen('A Gemini elutasította a kérést: '+e.message,true); if(sz.proba>2){ sz.st='leállt'; } }
+        if(sz.proba>6) sz.st='leállt';
+      }
+      szakaszKijelzo(); rajzolLeirat(); ment();
+    }
+  }finally{
+    allapot.dolgozik=false;
+    if(!allapot.fut) allapotSzoveg(allapot.sor.some(s=>s.st==='leállt')?'Hiba':'Kész');
+  }
+}
+
+$('kulcsproba').addEventListener('click', async ()=>{
+  ment(); fejAllapot(); allapot.modell=null;
+  if(!$('kulcs').value.trim()){ uzen('Nincs kulcs megadva.',true); return; }
+  uzen('Kapcsolat ellenőrzése…');
+  try{
+    const m=await modellValaszt();
+    const j=await hiv(`models/${encodeURIComponent(m)}:generateContent`,{contents:[{role:'user',parts:[{text:'Válaszolj egy szóval: működik'}]}]});
+    uzen(`Kapcsolat rendben · modell: ${m} · válasz: ${szoveg(j).trim().slice(0,40)}`);
+  }catch(e){ uzen('Nem sikerült: '+e.message,true); }
+});
+
+// ---------- jegyzőkönyv ----------
+function leiratSzoveg(){
+  return allapot.szegmensek.map(g=> g.jel ? `[${g.jel}]` : `${ora(g.ora)} ${g.b}${g.szav?' [szavazás]':''}: ${g.s}`).join('\n');
+}
+$('tervgomb').addEventListener('click', async ()=>{
+  $('tervgomb').disabled=true; uzen('Jegyzőkönyv-tervezet készül…');
+  try{
+    const m=await modellValaszt();
+    const d=$('datum').value; const datum=d?d.replace(/-/g,'. ')+'.':'[dátum]';
+    const prompt=`Készíts jegyzőkönyv-tervezetet Zebegény Község Önkormányzata Képviselő-testületének ${datum} napján tartott ${$('tipus').value} üléséről, az alábbi leirat alapján.
+Szerkezet (a Magyarország helyi önkormányzatairól szóló 2011. évi CLXXXIX. törvény 52. §-a szerinti tartalmi elemekkel):
+1. Fejléc: „JEGYZŐKÖNYV”, „Készült: …”, Helye: ${$('hely').value}, Ideje: dátum és kezdés időpontja.
+2. Jelen vannak (a megadott listából; ha a leiratból más is kiderül, jelöld [ellenőrizendő]).
+3. Határozatképesség megállapítása, ha elhangzik.
+4. Elfogadott napirend.
+5. Napirendi pontonként: cím, előterjesztő, a tanácskozás lényege tömören (ki mit javasolt, kérdezett, válaszolt – nem szó szerint), a szavazás számszerű eredménye, a határozat szövege, ha elhangzik.
+6. Zárás: az ülés vége időpontja; aláírásra: polgármester, jegyző; „kmf.”.
+Szabályok:
+- Csak a leiratban szereplő tartalom. Semmit ne találj ki.
+- Ha a szavazás eredménye nem hangzik el egyértelműen: „[KÉZI KITÖLTÉS: … igen, … nem, … tartózkodás]”.
+- Határozatszám helyére: „…/${(d||'2026').slice(0,4)}. (…) számú határozat”.
+- Zárt ülésre utaló jelzésnél: „[Zárt ülés – külön jegyzőkönyvben]”.
+- Bizonytalan névnél vagy elhallásnál: [ellenőrizendő].
+- Hivatalos, tárgyilagos magyar nyelv. Sima szöveg, markdown-jelölés nélkül.
+${ulesKontextus()}
+
+LEIRAT:
+${leiratSzoveg()}`;
+    const j=await hiv(`models/${encodeURIComponent(m)}:generateContent`,{contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{temperature:0.2}});
+    allapot.tervezet=szoveg(j).trim(); ment(); rajzolTervezet(); uzen('');
+    $('terv-blokk').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){ uzen('A tervezet nem készült el: '+e.message,true); }
+  $('tervgomb').disabled=false;
+});
+function letolt(nev,t){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'})); a.download=nev;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);
+}
+$('masol').addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(allapot.tervezet); uzen('Vágólapra másolva.'); }catch(e){ uzen('A másolás nem sikerült; jelöld ki a szöveget kézzel.',true); } });
+$('letolt').addEventListener('click',()=>letolt(`jegyzokonyv-tervezet-${$('datum').value||'ules'}.txt`, allapot.tervezet));
+$('leirat-letolt').addEventListener('click',()=>letolt(`leirat-${$('datum').value||'ules'}.txt`, leiratSzoveg()));
+$('uj').addEventListener('click',()=>{
+  if(allapot.fut){ uzen('Előbb fejezd be a rögzítést.',true); return; }
+  if(allapot.szegmensek.length && !confirm('Új ülés: a mostani leirat és tervezet törlődik erről a telefonról. Folytatod?')) return;
+  allapot.szegmensek=[]; allapot.sor=[]; allapot.tervezet=''; allapot.indulas=null; allapot.szakaszIdx=0;
+  ment(); rajzolLeirat(); rajzolTervezet(); szakaszKijelzo(); idoKijelzo(); allapotSzoveg('Kész');
+  $('fogomb-szoveg').textContent='Rögzítés indítása'; uzen('');
+});
+window.addEventListener('beforeunload',e=>{ if(allapot.fut||allapot.sor.some(s=>s.st!=='kész'&&s.st!=='leállt')){ e.preventDefault(); e.returnValue=''; } });
+
+betolt();
+})();
+</script>
+</body>
+</html>
